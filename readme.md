@@ -1,4 +1,5 @@
 
 # References
 
-https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/
+- [USDA - SR28 - Download Files][https://goo.gl/0tA0Lm]
+  
