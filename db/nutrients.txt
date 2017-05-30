@@ -1,10 +1,10 @@
 Totals
-	Water (g)
-	Energy (kcal)
-	Energy (kJ)
-	Protein (g)
-	Lipids (fat) (g)
-	Carbohydrates (g)
+	Water (g) ★
+	Energy (kcal) ★
+	Energy (kJ) ★
+	Protein (g) ★
+	Lipids (fat) (g) ★
+	Carbohydrates (g) ★
 	Ash (g)
 Carbohydrates
 	Fiber, total dietary (g)
@@ -16,8 +16,8 @@ Carbohydrates
 	Maltose (g)
 	Galactose (g)
 	Starch (g)
-Lipids
-	Fatty acids, total saturated (g)
+Lipids ★
+	Fatty acids, total saturated (g) ★
 		4:0 (g)
 		6:0 (g)
 		8:0 (g)
@@ -32,7 +32,7 @@ Lipids
 		20:0 (g)
 		22:0 (g)
 		24:0 (g)
-	Fatty acids, total monounsaturated (g)
+	Fatty acids, total monounsaturated (g) ★
 		14:1 (g)
 		15:1 (g)
 		16:1 undifferentiated (g)
@@ -48,7 +48,7 @@ Lipids
 		22:1 c (g)
 		22:1 t (g)
 		24:1 c (g)
-	Fatty acids, total polyunsaturated (g)
+	Fatty acids, total polyunsaturated (g) ★
 		18:2 undifferentiated (g)
 		18:2 n-6 c,c (g)
 		18:2 CLAs (g)
@@ -71,47 +71,47 @@ Lipids
 		22:4 (g)
 		22:5 n-3 (DPA) (g)
 		22:6 n-3 (DHA) (g)
-	Fatty acids, total trans (g)
+	Fatty acids, total trans (g) ★
 	Fatty acids, total trans-monoenoic (g)
 	Fatty acids, total trans-polyenoic (g)
-	Cholesterol (mg)
+	Cholesterol (mg) ★
 	Phytosterols (mg)
 	Stigmasterol (mg)
 	Campesterol (mg)
 	Beta-sitosterol (mg)
-Minerals
-	Calcium, Ca (mg)
-	Iron, Fe (mg)
-	Magnesium, Mg (mg)
-	Phosphorus, P (mg)
-	Potassium, K (mg)
-	Sodium, Na (mg)
-	Zinc, Zn (mg)
+Minerals ★
+	Calcium, Ca (mg) ★
+	Iron, Fe (mg) ★
+	Magnesium, Mg (mg) ★
+	Phosphorus, P (mg) ★
+	Potassium, K (mg) ★
+	Sodium, Na (mg) ★
+	Zinc, Zn (mg) ★
 	Copper, Cu (mg)
 	Manganese, Mn (mg)
 	Selenium, Se (µg)
 	Fluoride, F (µg)
 Vitamins
-	Vitamin C, total ascorbic acid (mg)
-	Thiamin (mg)
-	Riboflavin (mg)
-	Niacin (mg)
+	Vitamin C, total ascorbic acid (mg) ★
+	Thiamin (mg) ★
+	Riboflavin (mg) ★
+	Niacin (mg) ★
 	Pantothenic acid (mg)
-	Vitamin B-6 (mg)
-	Folate, total (µg)
+	Vitamin B-6 (mg) ★
+	Folate, total (µg) ★
 	Folic acid (µg)
 	Folate, food (µg)
 	Folate, DFE (µg)
 	Choline, total (mg)
 	Betaine (mg)
-	Vitamin B-12 (µg)
+	Vitamin B-12 (µg) ★
 	Vitamin B-12, added (µg)
 	Vitamin A, RAE (µg)
 	Retinol (µg)
 	Carotene, beta (µg)
 	Carotene, alpha (µg)
 	Cryptoxanthin, beta (µg)
-	Vitamin A, IU (IU)
+	Vitamin A, IU (IU) ★
 	Lycopene (µg)
 	Lutein + zeaxanthin (µg)
 	Vitamin E (alpha-tocopherol) (mg)
@@ -123,11 +123,11 @@ Vitamins
 	Tocotrienol, beta (mg)
 	Tocotrienol, gamma (mg)
 	Tocotrienol, delta (mg)
-	Vitamin D (D2 + D3) (µg)
+	Vitamin D (D2 + D3) (µg) ★
 	Vitamin D2 (ergocalciferol) (µg)
 	Vitamin D3 (cholecalciferol) (µg)
-	Vitamin D (IU)
-	Vitamin K (phylloquinone) (µg)
+	Vitamin D (IU) ★
+	Vitamin K (phylloquinone) (µg) ★
 	Dihydrophylloquinone (µg)
 	Menaquinone-4 (µg)
 Amino acids
@@ -152,7 +152,7 @@ Amino acids
 	Hydroxyproline (g)
 Others
 	Alcohol, ethyl (g)
-	Caffeine (mg)
+	Caffeine (mg) ★
 	Theobromine (mg)
 Flavan-3-ols (mg)
 	(+)-Catechin (mg)
