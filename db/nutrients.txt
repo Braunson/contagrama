@@ -7,15 +7,15 @@ Totals
 	Carbohydrates (g) ★
 	Ash (g)
 Carbohydrates
-	Fiber, total dietary (g)
-	Sugars, total (g)
-	Sucrose (g)
-	Glucose (dextrose) (g)
-	Fructose (g)
-	Lactose (g)
+	Fiber, total dietary (g) ★
+	Sugars, total (g) ★
+	Sucrose (g) ★
+	Glucose (dextrose) (g) ★
+	Fructose (g) ★
+	Lactose (g) ★
 	Maltose (g)
 	Galactose (g)
-	Starch (g)
+	Starch (g) ★
 Lipids ★
 	Fatty acids, total saturated (g) ★
 		4:0 (g)
