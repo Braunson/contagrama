@@ -1,19 +1,47 @@
 <!doctype html>
 <html>
 <head>
+<title>ContaGrama</title>
 <style>
+textarea, input, button { 
+	outline: none;
+	resize: none;
+}
 html, body {
 	margin: 0px;
 	padding: 0px;
+	height: 100%;
 }
 .plan {
-	border-right: 1px solid #000;
+	width: 49.8%;
+	float: left;
+	height: 100%;
+	border-right: 2px solid #bf6d65 !important;
+}
+.plan textarea {
+	padding: 5%;
+	height: 90% !important;
+	width: 90% !important;
+	font-family: sans-serif;
+	font-size: 22px;
+	line-height: 30px;
+	border: none;
+	outline: none;
+}
+.plan textarea .margin {
+	margin: 10px;
+}
+.chart {
+	background: #f5eded;
+	width: 50%;
+	height: 100%;
+	float: left;
 }
 </style>
 </head>
 <body>
 <section class="plan">
-<textarea>Coffee 1L
+<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Coffee 1L
 Sucrilhos 50g
 Theanine 300mg
 Raw Carrot 50g
@@ -23,7 +51,7 @@ Milk 500ml
 Kale 50g
 Coke 500ml</textarea>
 </section>
-<section class="nutrients">
+<section class="chart">
 </section>
 </body>
 </html>
