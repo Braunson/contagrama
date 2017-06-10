@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <script src="/vue2.js"></script>
+<script>
+window.NUTRIENTS = {{nutrients}};
+</script>
 <script src="/app.js"></script>
 <title>ContaGrama</title>
 <style>
@@ -52,7 +55,7 @@ html, body {
 	}
 </style>
 </head>
-<body>
+<body id="app">
 <section class="plan">
 <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Coffee 1L
 Sucrilhos 50g
@@ -65,17 +68,6 @@ Kale 50g
 Coke 500ml</textarea>
 </section>
 <section class="chart">
-{% for main in nutrients %}
-{% for item in main %}
-{% if item is not string %}
-{% for subitem in item %}
-<h3>{{ subitem|pprint }}</h3>
-{% endfor %}
-{% else %}
-<h2>{{ item }}</h2>
-{% endif %}
-{% endfor %}
-{% endfor %}
 </section>
 </body>
 </html>
