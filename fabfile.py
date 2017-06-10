@@ -21,7 +21,7 @@ def nutrients():
 					if '\xe2\x98\x85' in line:
 						line = line.replace('\xe2\x98\x85', '').strip()
 						group.append(line.decode('utf-8'))
-					subgroup_started = False
+					subgroup_started = False					
 				else:
 					if not subgroup_started:
 						subgroup = group[-1] = [group[-1]]
@@ -29,6 +29,16 @@ def nutrients():
 					if '\xe2\x98\x85' in line:
 						line = line.replace('\xe2\x98\x85', '').strip()
 						subgroup.append(line.decode('utf-8'))
-	return {'nutrients': [
-		i for i in db['nutrients'] if type(i) is unicode or (type(i) is list and len(i) > 1)
-	]}
+	ndb = []
+	for group in db['nutrients']:
+		ngroup = []
+		for subgroup in group:
+			if type(subgroup) is list and len(subgroup) == 1:
+				ngroup.append(subgroup[0])
+			else:
+				ngroup.append(subgroup)
+		if len(ngroup) > 1:
+			ndb.append(ngroup)
+	ndb = {'nutrients': ndb}
+	pprint.pprint(ndb)
+	return ndb
