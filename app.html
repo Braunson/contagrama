@@ -2,18 +2,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="/vue2.js"></script>
+<script src="/static/vue2.js"></script>
+<script src="/static/app.js"></script>
 <script>
-window.NUTRIENTS = {{nutrients}};
+window.NUTRIENTS = {{nutrients|safe}};
 </script>
-<script src="/app.js"></script>
 <title>ContaGrama</title>
 <style>
 textarea, input, button { 
 	outline: none;
 	resize: none;
 }
-html, body {
+html, body, #app {
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
@@ -55,7 +55,8 @@ html, body {
 	}
 </style>
 </head>
-<body id="app">
+<body>
+<div id="app">
 <section class="plan">
 <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Coffee 1L
 Sucrilhos 50g
@@ -69,5 +70,6 @@ Coke 500ml</textarea>
 </section>
 <section class="chart">
 </section>
+</div>
 </body>
 </html>
