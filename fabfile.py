@@ -13,20 +13,22 @@ def nutrients():
 		subgroup_started = False
 		for line in nutrients_db:
 			if not re.search('^\s+', line):
+				line = line.replace('\xe2\x98\x85', '').strip()
 				db['nutrients'].append([line.decode('utf-8')])
 				group = db['nutrients'][-1]
 			elif group is not None:
 				if not re.search('^\t\t', line):
 					if '\xe2\x98\x85' in line:
-						group.append(line.strip().decode('utf-8'))
+						line = line.replace('\xe2\x98\x85', '').strip()
+						group.append(line.decode('utf-8'))
 					subgroup_started = False
 				else:
 					if not subgroup_started:
 						subgroup = group[-1] = [group[-1]]
 						subgroup_started = True
 					if '\xe2\x98\x85' in line:
-						subgroup.append(line.strip().decode('utf-8'))
+						line = line.replace('\xe2\x98\x85', '').strip()
+						subgroup.append(line.decode('utf-8'))
 	return {'nutrients': [
-		i for i in db['nutrients'] 
-		if type(db[i]) is unicode or (type(db[i]) is list and len(db[i]) > 0)
+		i for i in db['nutrients'] if type(i) is unicode or (type(i) is list and len(i) > 1)
 	]}
