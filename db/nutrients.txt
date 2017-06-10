@@ -16,7 +16,7 @@ Carbohydrates
 	Maltose (g)
 	Galactose (g)
 	Starch (g) ★
-Lipids ★
+Lipids
 	Fatty acids, total saturated (g) ★
 		4:0 (g)
 		6:0 (g)
@@ -79,7 +79,7 @@ Lipids ★
 	Stigmasterol (mg)
 	Campesterol (mg)
 	Beta-sitosterol (mg)
-Minerals ★
+Minerals
 	Calcium, Ca (mg) ★
 	Iron, Fe (mg) ★
 	Magnesium, Mg (mg) ★
@@ -87,10 +87,10 @@ Minerals ★
 	Potassium, K (mg) ★
 	Sodium, Na (mg) ★
 	Zinc, Zn (mg) ★
-	Copper, Cu (mg)
-	Manganese, Mn (mg)
-	Selenium, Se (µg)
-	Fluoride, F (µg)
+	Copper, Cu (mg) ★
+	Manganese, Mn (mg) ★
+	Selenium, Se (µg) ★
+	Fluoride, F (µg) ★
 Vitamins
 	Vitamin C, total ascorbic acid (mg) ★
 	Thiamin (mg) ★
@@ -107,15 +107,15 @@ Vitamins
 	Vitamin B-12 (µg) ★
 	Vitamin B-12, added (µg)
 	Vitamin A, RAE (µg)
-	Retinol (µg)
+	Retinol (µg) ★
 	Carotene, beta (µg)
 	Carotene, alpha (µg)
 	Cryptoxanthin, beta (µg)
 	Vitamin A, IU (IU) ★
 	Lycopene (µg)
 	Lutein + zeaxanthin (µg)
-	Vitamin E (alpha-tocopherol) (mg)
-	Vitamin E, added (mg)
+	Vitamin E (alpha-tocopherol) (mg) ★
+	Vitamin E, added (mg) ★
 	Tocopherol, beta (mg)
 	Tocopherol, gamma (mg)
 	Tocopherol, delta (mg)
@@ -131,29 +131,29 @@ Vitamins
 	Dihydrophylloquinone (µg)
 	Menaquinone-4 (µg)
 Amino acids
-	Tryptophan (g)
+	Tryptophan (g) ★
 	Threonine (g)
 	Isoleucine (g)
 	Leucine (g)
-	Lysine (g)
-	Methionine (g)
-	Cystine (g)
-	Phenylalanine (g)
-	Tyrosine (g)
+	Lysine (g) ★
+	Methionine (g) ★
+	Cystine (g) ★
+	Phenylalanine (g) ★
+	Tyrosine (g) ★
 	Valine (g)
-	Arginine (g)
+	Arginine (g) ★
 	Histidine (g)
 	Alanine (g)
 	Aspartic acid (g)
-	Glutamic acid (g)
-	Glycine (g)
+	Glutamic acid (g) ★
+	Glycine (g) ★
 	Proline (g)
 	Serine (g)
 	Hydroxyproline (g)
 Others
 	Alcohol, ethyl (g)
 	Caffeine (mg) ★
-	Theobromine (mg)
+	Theobromine (mg) ★
 Flavan-3-ols (mg)
 	(+)-Catechin (mg)
 	(-)-Epigallocatechin (mg)
