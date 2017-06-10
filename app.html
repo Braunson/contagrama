@@ -1,75 +1,33 @@
 <!doctype html>
 <html>
 <head>
+<title>ContaGrama</title>
 <meta charset="utf-8">
-<script src="/static/vue2.js"></script>
-<script src="/static/app.js"></script>
+<link href="/static/app.css" rel="stylesheet" />
 <script>
 window.NUTRIENTS = {{nutrients|safe}};
 </script>
-<title>ContaGrama</title>
-<style>
-textarea, input, button { 
-	outline: none;
-	resize: none;
-}
-html, body, #app {
-	margin: 0px;
-	padding: 0px;
-	height: 100%;
-}
-.plan {
-	width: 49.8%;
-	float: left;
-	height: 100%;
-	border-right: 2px solid #bf6d65 !important;
-}
-.plan textarea {
-	padding: 5%;
-	height: 90% !important;
-	width: 90% !important;
-	font-family: sans-serif;
-	font-size: 22px;
-	line-height: 30px;
-	border: none;
-	outline: none;
-}
-.plan textarea .margin {
-	margin: 10px;
-}
-.chart {
-	font-family: sans-serif;
-	background: #f5eded;
-	width: 50%;
-	height: 100%;
-	overflow-y: scroll;
-	float: left;
-}
-	.chart h2 {
-		margin: 10px;
-		font-size: 18px;
-	}
-	.chart h3 {
-		margin: 10px;
-		font-size: 18px;
-	}
-</style>
+<script type="x-template" id="plan">
+	<section class="plan">
+		<textarea 
+			autocomplete="off" 
+			autocorrect="off" 
+			autocapitalize="off" 
+			spellcheck="false">
+		</textarea>
+	</section>
+</script>
+<script type="x-template" id="chart">
+	<section class="chart">
+	</section>
+</script>
+<script src="/static/vue2.js" defer></script>
+<script src="/static/app.js" defer></script>
 </head>
 <body>
 <div id="app">
-<section class="plan">
-<textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Coffee 1L
-Sucrilhos 50g
-Theanine 300mg
-Raw Carrot 50g
-Orange Juice 400ml
-Parmesan cheese 100g
-Milk 500ml
-Kale 50g
-Coke 500ml</textarea>
-</section>
-<section class="chart">
-</section>
+	<plan></plan>
+	<chart></chart> 
 </div>
 </body>
 </html>

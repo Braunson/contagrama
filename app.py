@@ -5,7 +5,12 @@ import json
 from flask import Flask, render_template
 from fabfile import nutrients
 
-app = Flask(__name__, template_folder='.', static_folder='.', static_url_path='/static')
+app = Flask(
+	__name__, 
+	template_folder='.', 
+	static_folder='.', 
+	static_url_path='/static'
+)
 
 @app.route('/')
 def home():
