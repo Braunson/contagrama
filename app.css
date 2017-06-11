@@ -3,16 +3,15 @@ textarea, input, button {
   outline: none;
   resize: none;
 }
-html, body, #app {
+html, body {
   margin: 0px;
   padding: 0px;
-  height: 100%;
 }
 .plan {
   width: 49.8%;
-  float: left;
-  height: 100%;
-  border-right: 2px solid #bf6d65 !important;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 .plan textarea {
   padding: 5%;
@@ -28,26 +27,44 @@ html, body, #app {
   margin: 10px;
 }
 .chart {
+  border-left: 1px solid #bf6d65 !important;
   font-family: sans-serif;
-  background: #f5eded;
-  width: 50%;
-  height: 100%;
+  background: #fff;
+  right: 0px;
+  width: 29%;
   overflow-y: scroll;
-  float: left;
+  position: absolute;
+  padding: 10px;
 }
+  .chart .group {
+    padding: 10px 5px;
+    padding-bottom: 1px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #bf6d65;
+    background: #f5eded;
+    margin-bottom: 20px;
+  }
   .chart table {
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: normal;
     border-collapse: collapse;
-    padding: 2%;
-    width: 97%;
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 10px;
   }
   .chart table th {
     text-align: left;
   }
   .chart table td:first-child {
+    padding-top: 5px;
     width: 80%;
   }
   .chart table td:last-child {
     text-align: right;
+    padding-right: 5px;
   }
   .chart h2 {
     margin: 10px;

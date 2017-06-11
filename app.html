@@ -20,19 +20,15 @@ window.NUTRIENTS = {{nutrients|safe}};
 </script>
 <script type="x-template" id="chart">
   <section class="chart">
-    <table v-for="group in chart">
-      <thead>
-        <tr>
-          <th colspan="2">{{group.title}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in group.data">
-          <td>{{item}}</td>
-          <td>xxx</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="group" v-for="group in chart">
+      <div class="title">{{group.title}}
+        <table>
+          <tr v-for="item in group.data">
+            <td>{{item}}</td>
+            <td>xxx</td>
+          </tr>
+        </table>
+      </div>
   </section>
 </script>
 {% endraw %}

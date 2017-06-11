@@ -10,7 +10,7 @@ const chart = Vue.component('chart', {
       type: Array,
       required: false
     }
-  }
+  },
   computed: {
     chart () {
       return window.NUTRIENTS.map((group) => {
@@ -23,8 +23,8 @@ const chart = Vue.component('chart', {
 const app = () => new Vue({
   el: '#app',
   components: {
-    plan,
-    chart
+    plan: plan,
+    chart: chart
   }
 })
 
