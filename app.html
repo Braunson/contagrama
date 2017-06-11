@@ -7,6 +7,7 @@
 <script>
 window.NUTRIENTS = {{nutrients|safe}};
 </script>
+{% raw %}
 <script type="x-template" id="plan">
 	<section class="plan">
 		<textarea 
@@ -19,8 +20,22 @@ window.NUTRIENTS = {{nutrients|safe}};
 </script>
 <script type="x-template" id="chart">
 	<section class="chart">
+		<table v-for="group in chart">
+			<thead>
+				<tr>
+					<th colspan="2">{{group.title}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="item in group.data">
+					<td>{{item}}</td>
+					<td>xxx</td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
 </script>
+{% endraw %}
 <script src="/static/vue2.js" defer></script>
 <script src="/static/app.js" defer></script>
 </head>

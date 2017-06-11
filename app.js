@@ -4,18 +4,22 @@ const plan = Vue.component('plan', {
 })
 
 const chart = Vue.component('chart', {
-  template: '#chart'
+  template: '#chart',
+  computed: {
+    chart () {
+      return window.NUTRIENTS.map((group) => {
+        return {title: group[0], data: group.slice(1)}
+      })
+    }
+  }
 })
 
-window.addEventListener('load', () => {
-  return new Vue({
-    el: '#app',
-    data: {
-      nutrients: window.NUTRIENTS
-    },
-    components: {
-      plan: plan,
-      chart: chart
-    }
-  })
+const app = () => new Vue({
+  el: '#app',
+  components: {
+    plan,
+    chart
+  }
 })
+
+window.addEventListener('load', () => app())
