@@ -5,6 +5,12 @@ const plan = Vue.component('plan', {
 
 const chart = Vue.component('chart', {
   template: '#chart',
+  props: {
+    nutrients: {
+      type: Array,
+      required: false
+    }
+  }
   computed: {
     chart () {
       return window.NUTRIENTS.map((group) => {

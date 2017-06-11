@@ -35,6 +35,20 @@ html, body, #app {
   overflow-y: scroll;
   float: left;
 }
+  .chart table {
+    border-collapse: collapse;
+    padding: 2%;
+    width: 97%;
+  }
+  .chart table th {
+    text-align: left;
+  }
+  .chart table td:first-child {
+    width: 80%;
+  }
+  .chart table td:last-child {
+    text-align: right;
+  }
   .chart h2 {
     margin: 10px;
     font-size: 18px;
