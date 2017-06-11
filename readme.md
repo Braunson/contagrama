@@ -14,8 +14,8 @@ done with [Fabric][fabric], converting text files onto consumable JSON.
 
 ## Development
 
-	pip install -r requirements.txt
-	python app.py
+    pip install -r requirements.txt
+    python app.py
 
 All code is contained within **`app.{css,html,js,py}`** and **`fabfile.py`**.
 
