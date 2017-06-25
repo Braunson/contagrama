@@ -4,6 +4,17 @@
 import pprint
 import re
 
+def usda():
+    pass
+    # https://ndb.nal.usda.gov/ndb/search/list?qlookup=&qt=&manu=&SYNCHRONIZER_URI=%2Fndb%2Fsearch%2Flist&SYNCHRONIZER_TOKEN=7794dde1-429d-40b8-84d4-c399a6783176&ds=Standard+Reference
+    # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=50&order=asc
+    # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=100&order=asc
+
+def gen_nutrient_regex():
+    grams = "(?:k|(?:mc?)?g)"
+    others = '(?:IU)|(?:kcal)|(?:kJ)'
+    return '^(.*?)(?:\(%s|%s\))?$' % (grams, others)
+
 def nutrients():
     db = {'nutrients': []}
     with open('db/nutrients.txt') as nutrients_db:
@@ -30,13 +41,30 @@ def nutrients():
                         line = line.replace('\xe2\x98\x85', '').strip()
                         subgroup.append(line.decode('utf-8'))
     ndb = []
+    nextId = 1
     for group in db['nutrients']:
         ngroup = []
         for subgroup in group:
-            if type(subgroup) is list and len(subgroup) == 1:
-                ngroup.append(subgroup[0])
+            nutrient = re.search(
+                (
+                    '^(.*?)\s*'
+                    '(?:\(('
+                        '(?:k|(?:mc?)|(?:\xb5)?g)|'
+                        '(?:IU)|'
+                        '(?:kcal)|'
+                        '(?:kJ)'
+                    ')\))?$'
+                ),
+                subgroup
+            )
+            if nutrient:
+                nutrient = list(nutrient.groups())
+                if len(nutrient) < 2:
+                    nutrient.append(None)
+                ngroup.append((nextId, nutrient[0], nutrient[1]))
             else:
-                ngroup.append(subgroup)
+                print('Failed: ', subgroup)
+            nextId += 1
         if len(ngroup) > 1:
             ndb.append(ngroup)
     ndb = {'nutrients': ndb}
