@@ -10,11 +10,6 @@ def usda():
     # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=50&order=asc
     # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=100&order=asc
 
-def gen_nutrient_regex():
-    grams = "(?:k|(?:mc?)?g)"
-    others = '(?:IU)|(?:kcal)|(?:kJ)'
-    return '^(.*?)(?:\(%s|%s\))?$' % (grams, others)
-
 def nutrients():
     db = {'nutrients': []}
     with open('db/nutrients.txt') as nutrients_db:
