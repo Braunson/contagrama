@@ -1,14 +1,89 @@
 
 # coding: utf-8
 
+from code import interact
+import collections
 import pprint
 import re
+import requests
+import lxml.html
+
+BROWSER_HEADERS = dict([
+    ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
+    ('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.3'),
+    ('Accept-Encoding', 'gzip,deflate,sdch'),
+    ('Accept-Language', 'en-US,en;q=0.8'),
+    ('Connection', 'keep-alive'),
+    ('User-Agent', (
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.4'
+        '(KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4'
+    ))
+])
 
 def usda():
     pass
+    # https://ndb.nal.usda.gov/ndb/search/list
     # https://ndb.nal.usda.gov/ndb/search/list?qlookup=&qt=&manu=&SYNCHRONIZER_URI=%2Fndb%2Fsearch%2Flist&SYNCHRONIZER_TOKEN=7794dde1-429d-40b8-84d4-c399a6783176&ds=Standard+Reference
     # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=50&order=asc
     # https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=fd_s&fgcd=&manu=&lfacet=&qlookup=&ds=Standard+Reference&qt=&qp=&qa=&qn=&q=&ing=&offset=100&order=asc
+
+def test_usda():
+    params = collections.OrderedDict({
+        'qlookup': '',
+        'qt': '',
+        'manu': '',
+        'SYNCHRONIZER_URI': '/ndb/search/list',
+        'SYNCHRONIZER_TOKEN': '7794dde1-429d-40b8-84d4-c399a6783176',
+        'ds': 'Standard+Reference'
+    })
+    response = requests.get('https://ndb.nal.usda.gov/ndb/search/list', params=params)
+    parsed = lxml.html.fromstring(response.content)
+    items = parsed.cssselect('.list-left tr')[1:]
+    interact(local=locals())
+
+"""
+
+    ?{
+        'maxsteps': 6,
+        'format': '',
+        'count': '',
+        'max': 50,
+        'sort': 'fd_s',
+        'fgcd': '',
+        'manu': '',
+        'lfacet': '',
+        'qlookup': '',
+        'ds': 'Standard+Reference',
+        'qt': '',
+        'qp': '',
+        'qa': '',
+        'qn': '',
+        'q': '',
+        'ing': '',
+        'offset': 50,
+        'order': 'asc'
+    }
+    ?{
+        'maxsteps': 6,
+        'format': '',
+        'count': '',
+        'max': 50,
+        'sort': 'fd_s',
+        'fgcd': '',
+        'manu': '',
+        'lfacet': '',
+        'qlookup': '',
+        'ds': 'Standard+Reference',
+        'qt': '',
+        'qp': '',
+        'qa': '',
+        'qn': '',
+        'q': '',
+        'ing': '',
+        'offset': 100,
+        'order': 'asc'
+    }
+"""
 
 def nutrients():
     db = {'nutrients': []}
