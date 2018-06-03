@@ -1,45 +1,21 @@
-<!doctype html>
-<html>
-<head>
-<title>ContaGrama</title>
-<meta charset="utf-8">
-<link href="/static/app.css" rel="stylesheet" />
-<script>
-window.NUTRIENTS = {{nutrients|safe}};
-</script>
-{% raw %}
-<script type="x-template" id="plan">
-  <section class="plan">
+<template>
+  <div id="app">
     <textarea 
       autocomplete="off" 
       autocorrect="off" 
       autocapitalize="off" 
       spellcheck="false">
     </textarea>
-  </section>
-</script>
-<script type="x-template" id="chart">
-  <section class="chart">
-    <div class="group" v-for="group in chart">
-      <div class="title">{{group.title}}
-        <table>
-          <tr v-for="item in group.data">
-            <td>{{item}}</td>
-            <td>xxx</td>
-          </tr>
-        </table>
-      </div>
-  </section>
-</script>
-{% endraw %}
-<script src="/static/vue2.js" defer></script>
-<script src="/static/vuex2.js" defer></script>
-<script src="/static/app.js" defer></script>
-</head>
-<body>
-<div id="app">
-  <plan></plan>
-  <chart></chart> 
-</div>
-</body>
-</html>
+  	<div class="chart">
+  	  <div class="group" v-for="group in chart">
+  	    <div class="title">{{group.title}}
+  	      <table>
+  	        <tr v-for="item in group.data">
+  	          <td>{{item}}</td>
+  	          <td>xxx</td>
+  	        </tr>
+  	      </table>
+  	    </div>
+  	</div>
+  </div>
+</template>
