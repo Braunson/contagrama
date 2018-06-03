@@ -1,0 +1,42 @@
+{
+  "name": "contagrama",
+  "version": "0.0.1",
+  "description": "Minimalist Plain Text Dieting",
+  "engines": {
+    "node": "8.3.0",
+    "npm": "5.3.0"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "start": "nuxt build && nuxt start",
+    "build": "nuxt generate",
+    "lint": "eslint --ext .js,.vue ."
+  },
+  "author": "Jonas Galvez",
+  "dependencies": {
+    "@nuxtjs/pwa": "^2.0.8",
+    "nuxt": "^1.4.0",
+    "raw-loader": "^0.5.1",
+    "vue": "^2.4.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "standard": "^10.0.2",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
+  }
+}
