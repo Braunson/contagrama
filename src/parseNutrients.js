@@ -1,12 +1,15 @@
+import nutrients from '~/nutrients.txt'
 
-def nutrients():
-    db = {'nutrients': []}
-    with open('db/nutrients.txt') as nutrients_db:
-        nid = 1
-        group = None
-        subgroup = None
-        subgroup_started = False
-        for line in nutrients_db:
+export const parseNutrients = () => {
+  const parsed = []
+  let nid = 1
+  let group = null
+  let subgroup = null
+  let subgroup_started = false
+  let line
+  const lines = nutrients.split(/\n/)
+  for (let i = 0, len = lines.length; i < len; i++) {
+    line = lines[i]
             if not re.search('^\s+', line):
                 line = line.replace('\xe2\x98\x85', '').strip()
                 db['nutrients'].append([line.decode('utf-8')])
