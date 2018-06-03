@@ -1,6 +1,6 @@
 import nutrients from '~/nutrients.txt'
 
-export const parseNutrients = () => {
+export const loadNutrients = () => {
   const parsed = []
   let nid = 1
   let group = null
@@ -11,29 +11,34 @@ export const parseNutrients = () => {
   for (let i = 0, len = lines.length; i < len; i++) {
     line = lines[i]
     if (!line.match(/^\s+/)) {
-        line = line.replace('★', '').trim()
-        parsed.push([line])
-        group = parsed[parsed.length - 1]
+      line = line.replace('★', '').trim()
+      parsed.push([line])
+      group = parsed[parsed.length - 1]
     } else if (group !== null) {
-        if not re.search('^\t\t', line) {
-            if '\xe2\x98\x85' in line: {
-                line = line.replace('\xe2\x98\x85', '').strip()
-                group.append(line.decode('utf-8'))
-            }
-            subgroup_started = False                    
-        } else {
-            if not subgroup_started:
-                subgroup = group[-1] = [group[-1]]
-                subgroup_started = True
-            if '\xe2\x98\x85' in line {
-                line = line.replace('\xe2\x98\x85', '').strip()
-                subgroup.append(line.decode('utf-8'))
-            }
+      if not re.search('^\t\t', line) {
+        if (line.includes('★')) {
+          line = line.replace('★', '').trim()
+          group.push(line)
         }
+        subgroup_started = false
+      } else {
+        if (!subgroup_started) {
+          subgroup = group[-1] = [group[-1]]
+          subgroup_started = true
+        }
+        if (line.includes('★')) {
+          line = line.replace('★', '').trim()
+          subgroup.push(line)
+        }
+      }
     }
-    ndb = []
-    nextId = 1
-    for group in db['nutrients']:
+  }
+}
+
+export const exportNutrients = (arr) => {
+  const ndb = []
+  let nextId = 1
+  for group in db['nutrients']:
         ngroup = []
         for subgroup in group:
             nutrient = re.search(
