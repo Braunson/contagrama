@@ -1,4 +1,18 @@
+const axios = require('axios')
+const path = require('path') 
+
 module.exports = {
+  env: {
+    port: 3400,
+    baseUrl: process.env.BASE_URL || 'http://127.0.0.1:3400'
+  },
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    credentials: false,
+    baseURL: process.env.CONTAGRAMA_BASE_URL || 'http://127.0.0.1:3400'
+  },
   srcDir: 'src',
   head: {
     title: 'contagrama: Minimalist Plain Text Dieting',

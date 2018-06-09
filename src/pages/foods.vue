@@ -4,9 +4,12 @@
 <script>
 export default {
   asyncData ({ app, query }) {
-  	return {
-      foods: await app.$axios.post('/api/food/list', { page: 1 })
-  	}
+    const payload = {
+      page: query.page || 1
+    }
+    return {
+      foods: await app.$axios.post('/api/food/list', )
+    }
   }
 }
 </script>
