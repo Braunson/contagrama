@@ -16,11 +16,20 @@ class Model {
       return result.rows[0]
     }
   }
+  async getRows (query) {
+    const result = await this.execute(query)
+    if (result && result.rows) {
+      return result.rows
+    }
+  }
   async execute (query) {
+    if (typeof query !== 'string' || !query.length) {
+      throw new Error('* Model.execute() received an empty query')
+    }
     let client
     try {
       client = pool.connect()
-      return client.query(query)
+      return client.query(`${query};`)
     } finally {
       client.release()
     }
@@ -29,10 +38,9 @@ class Model {
 
 class Food extends Model {
   static async list () {
-    const result = await this.run('select * from usda_foods;')
-    return result.rows
+    return this.getRows('select * from usda_foods')
   }
   static async get (id) {
-    const result = await this.run('select * from usda_foods;')
+    return this.getRow(`select * from usda_foods where id = ${id}`)
   }
 }
