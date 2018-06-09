@@ -4,7 +4,6 @@ const NUTRIENT_REGEX = /^(.*?)\s(?:\(((?:k|(?:mc?)|(?:\xb5)?g)|(?:IU)|(?:kcal)|(
 
 export const loadNutrients = () => {
   const parsed = []
-  let nid = 1
   let group = null
   let subgroup = null
   let subgroupStarted = false

@@ -9,7 +9,6 @@ const {
   Builder,
   config,
   models,
-  fs
   translatePathToMethod
 } = require('./support')
 

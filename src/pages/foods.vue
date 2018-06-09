@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  asyncData ({ app, query }) {
+  async asyncData ({ app, query }) {
     const payload = {
       page: query.page || 1
     }

@@ -1,5 +1,4 @@
 
-exports.fs = require('fs')
 exports.Koa = require('koa')
 
 exports.parse = require('co-body')
