@@ -22,7 +22,7 @@ class Model {
       return result.rows
     }
   }
-  static async execute (query) {
+  static async execute (query, params = []) {
     if (typeof query !== 'string' || !query.length) {
       throw new Error('* Model.execute() received an empty query')
     }
@@ -31,7 +31,7 @@ class Model {
       client = pool.connect()
       return {
         client,
-        result: await client.query(`${query};`)
+        result: await client.query(`${query};`, params)
       }
     } finally {
       client.release()
@@ -55,18 +55,17 @@ class Model {
 }
 
 export class Food extends Model {
-  static async list () {
-    return super.getRows('select * from usda_foods')
+  static async list (page = 1) {
+    return super.getRows(`select * from usda_foods limit ${(page - 1) * 1000}, 1000`)
   }
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods where id = $1`, id)
   }
-  static update ({ id, payload }) {
+  static async update ({ id, payload }) {
     const updateQuery = super.genUpdateQuery({ id }, payload)
     return super.execute(`update usda_foods ${updateQuery}`)
   }
-  static async update ({ id }, payload) {
-    const updateQuery = super.genUpdateQuery({ id }, payload)
-    return super.execute(`update usda_foods ${updateQuery}`)
+  static async delete ({ id }, payload) {
+    return super.execute('delete from usda_foods where id = $1', [id])
   }
 }
