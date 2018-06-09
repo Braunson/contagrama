@@ -1,5 +1,5 @@
 
-import { Pool } from 'pg'
+const { Pool } = require('pg')
 
 export const pool = new Pool({
   database: process.env.CONTAGRAMA_DBNAME,
@@ -10,24 +10,19 @@ export const pool = new Pool({
 })
 
 class Model {
-  constructor (client, record) {
-    this.client = client
-    this.record = record
-    this.id = record[0]
-  }
-  async getRow (query) {
-    const { client, result } = await this.execute(query)
+  async getRow (query, params = []) {
+    const result = await this.execute(query, params)
     if (result && result.rows.length) {
-      return new Model(client, result.rows[0])
+      return result.rows[0]
     }
   }
-  async getRows (query) {
-    const { result } = await this.execute(query)
+  async getRows (query, params = []) {
+    const result = await this.execute(query, params)
     if (result && result.rows) {
       return result.rows
     }
   }
-  async execute (query) {
+  static async execute (query) {
     if (typeof query !== 'string' || !query.length) {
       throw new Error('* Model.execute() received an empty query')
     }
@@ -42,13 +37,36 @@ class Model {
       client.release()
     }
   }
+  genUpdateQuery (where, payload) {
+    let index
+    const params = Object.values(payload)
+    payload = Object.keys(payload).map((key, i) => {
+      index = i
+      return `${key} = $${i}`
+    })
+    where = Object.keys(where).map((key, i) => {
+      return `${key} = $${index + i}`
+    })
+    return {
+      params, 
+      query: `${query.join(', ')} where ${where.join(' and ')}`
+    }
+  }
 }
 
-class Food extends Model {
+export class Food extends Model {
   static async list () {
-    return this.getRows('select * from usda_foods')
+    return super.getRows('select * from usda_foods')
   }
-  static async get (id) {
-    return this.getRow(`select * from usda_foods where id = ${id}`)
+  static async get ({ id }) {
+    return super.getRow(`select * from usda_foods where id = $1`, id)
+  }
+  static update ({ id, payload }) {
+    const updateQuery = super.genUpdateQuery({ id }, payload)
+    return super.execute(`update usda_foods ${updateQuery}`)
+  }
+  static async update ({ id }, payload) {
+    const updateQuery = super.genUpdateQuery({ id }, payload)
+    return super.execute(`update usda_foods ${updateQuery}`)
   }
 }
