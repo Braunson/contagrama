@@ -1,0 +1,133 @@
+Totals
+	Water (g) ★
+	Energy (kcal) ★
+	Energy (kJ) ★
+	Protein (g) ★
+	Lipids (fat) (g) ★
+	Carbohydrates (g) ★
+	Ash (g)
+Carbohydrates
+	Fiber, total dietary (g) ★
+	Sugars, total (g) ★
+	Sucrose (g) ★
+	Glucose (dextrose) (g) ★
+	Fructose (g) ★
+	Lactose (g) ★
+	Maltose (g)
+	Galactose (g)
+	Starch (g) ★
+Lipids
+	Fatty acids, total saturated (g) ★
+	Fatty acids, total monounsaturated (g) ★
+	Fatty acids, total polyunsaturated (g) ★
+	Fatty acids, total trans (g) ★
+	Fatty acids, total trans-monoenoic (g)
+	Fatty acids, total trans-polyenoic (g)
+	Cholesterol (mg) ★
+	Phytosterols (mg)
+	Stigmasterol (mg)
+	Campesterol (mg)
+	Beta-sitosterol (mg)
+Minerals
+	Calcium, Ca (mg) ★
+	Iron, Fe (mg) ★
+	Magnesium, Mg (mg) ★
+	Phosphorus, P (mg) ★
+	Potassium, K (mg) ★
+	Sodium, Na (mg) ★
+	Zinc, Zn (mg) ★
+	Copper, Cu (mg) ★
+	Manganese, Mn (mg) ★
+	Selenium, Se (µg) ★
+	Fluoride, F (µg) ★
+Vitamins
+	Vitamin C, total ascorbic acid (mg) ★
+	Thiamin (mg) ★
+	Riboflavin (mg) ★
+	Niacin (mg) ★
+	Pantothenic acid (mg)
+	Vitamin B-6 (mg) ★
+	Folate, total (µg) ★
+	Folic acid (µg)
+	Folate, food (µg)
+	Folate, DFE (µg)
+	Choline, total (mg)
+	Betaine (mg)
+	Vitamin B-12 (µg) ★
+	Vitamin B-12, added (µg)
+	Vitamin A, RAE (µg)
+	Retinol (µg) ★
+	Carotene, beta (µg)
+	Carotene, alpha (µg)
+	Cryptoxanthin, beta (µg)
+	Vitamin A, IU (IU) ★
+	Lycopene (µg)
+	Lutein + zeaxanthin (µg)
+	Vitamin E (alpha-tocopherol) (mg) ★
+	Vitamin E, added (mg) ★
+	Tocopherol, beta (mg)
+	Tocopherol, gamma (mg)
+	Tocopherol, delta (mg)
+	Tocotrienol, alpha (mg)
+	Tocotrienol, beta (mg)
+	Tocotrienol, gamma (mg)
+	Tocotrienol, delta (mg)
+	Vitamin D (D2 + D3) (µg) ★
+	Vitamin D2 (ergocalciferol) (µg)
+	Vitamin D3 (cholecalciferol) (µg)
+	Vitamin D (IU) ★
+	Vitamin K (phylloquinone) (µg) ★
+	Dihydrophylloquinone (µg)
+	Menaquinone-4 (µg)
+Amino acids
+	Tryptophan (g) ★
+	Threonine (g)
+	Isoleucine (g)
+	Leucine (g)
+	Lysine (g) ★
+	Methionine (g) ★
+	Cystine (g) ★
+	Phenylalanine (g) ★
+	Tyrosine (g) ★
+	Valine (g)
+	Arginine (g) ★
+	Histidine (g)
+	Alanine (g)
+	Aspartic acid (g)
+	Glutamic acid (g) ★
+	Glycine (g) ★
+	Proline (g)
+	Serine (g)
+	Hydroxyproline (g)
+Others
+	Alcohol, ethyl (g)
+	Caffeine (mg) ★
+	Theobromine (mg) ★
+Flavan-3-ols (mg)
+	(+)-Catechin (mg)
+	(-)-Epigallocatechin (mg)
+	(-)-Epicatechin (mg)
+	(-)-Epicatechin 3-gallate (mg)
+	(-)-Epigallocatechin 3-gallate (mg)
+	(+)-Gallocatechin (mg)
+Flavones (mg)
+	Apigenin (mg)
+	Luteolin (mg)
+Flavonols (mg)
+	Isorhamnetin (mg)
+	Kaempferol (mg)
+	Myricetin (mg)
+	Quercetin (mg)
+Isoflavones (mg)
+	Daidzein (mg)
+	Genistein (mg)
+	Glycitein (mg)
+	Biochanin A (mg) (mg)
+	Formononetin (mg) (mg)
+	Coumestrol (mg)
+Proanthocyanidin (mg)
+	Proanthocyanidin dimers (mg)
+	Proanthocyanidin trimers (mg)
+	Proanthocyanidin 4-6mers (mg)
+	Proanthocyanidin 7-10mers (mg)
+	Proanthocyanidin polymers (>10mers) (mg)

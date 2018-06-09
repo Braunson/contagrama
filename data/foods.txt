@@ -1,0 +1,25 @@
+100 Dairy and Egg Products
+200 Spices and Herbs
+300 Baby Foods
+Baked Products
+Beef Products
+Beverages
+Breakfast Cereals
+Cereal Grains and Pasta
+
+Fast Foods
+Fats and Oils
+Finfish and Shellfish Products
+Fruits and Fruit Juices
+Lamb, Veal, and Game Products
+Legumes and Legume Products
+Meals, Entrees, and Side Dishes
+Nut and Seed Products
+Pork Products
+Poultry Products
+Restaurant Foods
+Sausages and Luncheon Meats
+Snacks
+Soups, Sauces, and Gravies
+Sweets
+Vegetables and Vegetable Products
