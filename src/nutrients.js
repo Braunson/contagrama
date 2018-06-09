@@ -7,7 +7,7 @@ export const loadNutrients = () => {
   let nid = 1
   let group = null
   let subgroup = null
-  let subgroup_started = false
+  let subgroupStarted = false
   let line
   const lines = nutrients.split(/\n/)
   for (let i = 0, len = lines.length; i < len; i++) {
@@ -17,16 +17,16 @@ export const loadNutrients = () => {
       parsed.push([line])
       group = parsed[parsed.length - 1]
     } else if (group !== null) {
-      if not re.search('^\t\t', line) {
+      if (!line.match(/^\t\t/)) {
         if (line.includes('★')) {
           line = line.replace('★', '').trim()
           group.push(line)
         }
-        subgroup_started = false
+        subgroupStarted = false
       } else {
-        if (!subgroup_started) {
+        if (!subgroupStarted) {
           subgroup = group[-1] = [group[-1]]
-          subgroup_started = true
+          subgroupStarted = true
         }
         if (line.includes('★')) {
           line = line.replace('★', '').trim()
@@ -63,6 +63,7 @@ export const parseNutrients = (arr) => {
           ndb.push(ngroup)
         }
       }
+    }
   }
   return ndb
 }
