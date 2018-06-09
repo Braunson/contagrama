@@ -10,14 +10,19 @@ export const pool = new Pool({
 })
 
 class Model {
+  constructor (client, record) {
+    this.client = client
+    this.record = record
+    this.id = record[0]
+  }
   async getRow (query) {
-    const result = await this.execute(query)
+    const { client, result } = await this.execute(query)
     if (result && result.rows.length) {
-      return result.rows[0]
+      return new Model(client, result.rows[0])
     }
   }
   async getRows (query) {
-    const result = await this.execute(query)
+    const { result } = await this.execute(query)
     if (result && result.rows) {
       return result.rows
     }
@@ -29,7 +34,10 @@ class Model {
     let client
     try {
       client = pool.connect()
-      return client.query(`${query};`)
+      return {
+        client,
+        result: await client.query(`${query};`)
+      }
     } finally {
       client.release()
     }
