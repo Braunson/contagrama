@@ -52,7 +52,8 @@ app.use(async (ctx, next) => {
     model = model.replace(/^(.)(.*)/, (_, f, r) => `${f.toUpperCase()}${r}`)
     method = translatePathToMethod(method)
     console.log(' * API request: ', apiMethod, method)
-    return await models[model][method](ctx.json)
+    const result = await models[model][method](ctx.json)
+    ctx.body = result
   }
 })
 
