@@ -40,6 +40,7 @@ class Model {
   genUpdateQuery (where, payload) {
     let index
     const params = Object.values(payload)
+      .concat(Object.values(where))
     payload = Object.keys(payload).map((key, i) => {
       index = i
       return `${key} = $${i}`
@@ -48,8 +49,8 @@ class Model {
       return `${key} = $${index + i}`
     })
     return {
-      params, 
-      query: `${query.join(', ')} where ${where.join(' and ')}`
+      params,
+      query: `${payload.join(', ')} where ${where.join(' and ')}`
     }
   }
 }
