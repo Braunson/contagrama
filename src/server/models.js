@@ -14,6 +14,7 @@ class Model {
     const query = this.checkParamObject(where)
       ? this.genWhereQuery(select, where)
       : select
+    console.log(' * getRow() query:', query)
     const { result } = await this.execute(query)
     if (result.rows.length) {
       return result.rows[0]
@@ -36,6 +37,7 @@ class Model {
     } else {
       query = `${select} limit ${pageSize} offset ${(page - 1) * pageSize}`
     }
+    console.log(' * paginateRows() query:', query)
     const { result } = await this.execute(query)
     return result.rows
   }
@@ -69,7 +71,7 @@ class Model {
       values,
       text: `${update} ${payload.join(', ')} where ${where.join(' and ')}`
     }
-    const { result } = await this.execute(query) 
+    const { result } = await this.execute(query)
     console.log(' * Model.updateRows() result:', result)
   }
   static async deleteRows (deleteQ, where) {
@@ -88,10 +90,10 @@ class Model {
     let index = 1
     const values = []
     where = Object.keys(where).reduce((arr, key) => {
-      if (key === '$like') {
+      if (key === '$ilike') {
         return arr.concat(Object.keys(where[key]).map((subkey) => {
           values.push(where[key][subkey])
-          return `${subkey} like ${index++}`
+          return `${subkey} ilike $${index++}`
         }))
       } else {
         values.push(where[key])

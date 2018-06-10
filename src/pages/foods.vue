@@ -5,10 +5,11 @@
         <el-input v-model="searchField" placeholder="Filter foods" />
       </el-col>
       <el-col :span="2">
-        <el-button>Filter</el-button>
+        <el-button @click="paginate(page)">Filter</el-button>
       </el-col>
       <el-col :span="4">
-        <el-select v-model="foodGroup" placeholder="Select food group">
+        <el-select
+          v-model="foodGroup" placeholder="Select food group">
           <el-option
             v-for="fg in foodGroups"
             :key="`food-group-${fg.id}`"
@@ -30,8 +31,8 @@
       <el-pagination
         @current-change="paginate"
         background
-        layout="prev, pager, next"
-        :total="totalPages" />
+        layout="total, prev, pager, next"
+        :page-count="totalPages" />
     </el-row>
   </div>
 </template>
@@ -39,6 +40,7 @@
 <script>
 export default {
   data: () => ({
+    page: 1,
     foodGroup: null,
     searchField: ''
   }),
@@ -54,6 +56,11 @@ export default {
       totalPages: foodsResponse.data.total_pages
     }
   },
+  watch: {
+    foodGroup () {
+      this.paginate(1)
+    }
+  },
   methods: {
     async paginate (page) {
       let filters = {}
@@ -61,12 +68,15 @@ export default {
         filters.id_food_group = this.foodGroup
       }
       if (this.searchField) {
-        filters.$like = {
+        filters.$ilike = {
           'desc_long': `%${this.searchField}%`
         }
       }
-      const foodsResponse = await this.$axios.post('food/list', { filters, page })
+      const foodsResponse = await this.$axios.post('foods/paginate', { filters, page })
       this.foods = foodsResponse.data.rows
+      this.totalPages = foodsResponse.data.total_pages
+      this.$forceUpdate()
+      this.page = page
     }
   }
 }
@@ -78,6 +88,9 @@ body {
 }
 .top-bar {
   margin-bottom: 10px;
+  .el-select {
+    width: 300px;
+  }
 }
 table {
   width: 100%;
