@@ -28,15 +28,20 @@ class Model {
       return result.rows
     }
   }
-  static async paginateRows (query, where = null, page = 1) {
-    if (where) {
-      query = 
+  static async paginateRows (select, where = null, page = 1, pageSize = 10000) {
+    if (where !== null) {
+      query = this.genWhereQuery(select, where)
+      query.text = `${query.text} limit ${pageSize} offset ${(page - 1) * pageSize}`
+    } else {
+      query = `${select} limit ${pageSize} offset ${(page - 1) * pageSize}`
+    }
+    const { result } = await this.execute(query)
+    return {
+      rows: result.rows,
+      total_pages: Math.ceil(result.rows.length / pageSize)
     }
   }
   static async execute (query, ...params) {
-    if (typeof query !== 'string' || !query.length) {
-      throw new Error('* Model.execute() received an empty query')
-    }
     let client
     try {
       client = await pool.connect()
@@ -53,8 +58,8 @@ class Model {
       return `${key} = $${index + i}`
     })
     return {
-      params: Object.values(where),
-      query: `${select} where ${where.join(' and ')}`
+      values: Object.values(where),
+      text: `${select} where ${where.join(' and ')}`
     }
   }
   static genUpdateQuery (where, payload) {
@@ -78,19 +83,10 @@ class Model {
 
 exports.Food = class extends Model {
   static async list ({ page }) {
-
-    if (isNaN(page)) {
-      page = 1
-    }
-    const rows = await super.getRows(`select * from usda_foods )
-    return {
-      rows,
-      total: rows.length / 1000
-
-    }
+    return super.paginateRows('select * from usda_foods', null, page)
   }
   static async get ({ id }) {
-    return super.getRow(`select * from usda_foods where id = $1`, id)
+    return super.getRow(`select * from usda_foods`, { id })
   }
   static async update ({ id, payload }) {
     const updateQuery = super.genUpdateQuery({ id }, payload)
