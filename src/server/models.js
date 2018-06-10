@@ -85,13 +85,22 @@ class Model {
     )
   }
   static genWhereQuery (query, where) {
-    where = Object.keys(where).map((key, i) => {
-      return `${key} = $${i + 1}`
-    })
-    return {
-      values: Object.values(where),
-      text: `${query} where ${where.join(' and ')}`
-    }
+    let index = 1
+    const values = []
+    where = Object.keys(where).reduce((arr, key) => {
+      if (key === '$like') {
+        return arr.concat(Object.keys(where[key]).map((subkey) => {
+          values.push(where[key][subkey])
+          return `${subkey} like ${index++}`
+        })
+      } else {
+        values.push(where[key])
+        arr.push(`${key} = $${index++}`)
+        return arr
+      }
+    }, [])
+    const text = `${query} where ${where.join(' and ')}`
+    return { values, text }
   }
 }
 
