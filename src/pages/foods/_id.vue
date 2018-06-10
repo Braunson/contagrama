@@ -1,59 +1,59 @@
 <template>
   <div>
     <h2>{{ food.desc_long }}</h2>
-    <div class="chart">
-    <div class="group" v-for="group in chart">
-      <div class="title">{{group.title}}
-        <table>
-          <tr v-for="item in group.data">
-            <td>{{item}}</td>
-            <td>xxx</td>
-          </tr>
-        </table>
+    <div class="charts">
+      <div class="chart">
+        <div class="group" v-for="group in chart[0]">
+          <div class="title">{{ group.title }}
+            <table>
+              <tr v-for="item in group.nutrients">
+                <td>{{ item }}</td>
+                <td>xxx</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="chart">
+        <div class="group" v-for="group in chart[1]">
+          <div class="title">{{ group.title }}
+            <table>
+              <tr v-for="item in group.nutrients">
+                <td>{{ item }}</td>
+                <td>xxx</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+import nutrients from '@/assets/nutrients.json'
+export default {
+  async asyncData ({ app, params }) {
+    const foodResponse = await app.$axios.post('foods/get', { id: params.id })
+    return { food: foodResponse.data, chart: nutrients }
+  }
+}
+</script>
 
 <style lang="scss">
-
-textarea, input, button { 
-  outline: none;
-  resize: none;
-}
 html, body {
-  margin: 0px;
-  padding: 0px;
-}
-.plan {
-  width: 49.8%;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-.plan textarea {
-  padding: 5%;
-  height: 90% !important;
-  width: 90% !important;
-  font-family: sans-serif;
-  font-size: 22px;
-  line-height: 30px;
-  border: none;
-  outline: none;
-}
-.plan textarea .margin {
   margin: 10px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+.charts {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .chart {
-  border-left: 1px solid #bf6d65 !important;
-  font-family: sans-serif;
   background: #fff;
-  right: 0px;
-  width: 29%;
-  overflow-y: scroll;
-  position: absolute;
-  padding: 10px;
+  width: 49%;
   .group {
     padding: 10px 5px;
     padding-bottom: 1px;

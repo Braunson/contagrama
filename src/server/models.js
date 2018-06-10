@@ -14,9 +14,9 @@ class Model {
     const query = this.checkParamObject(where)
       ? this.genWhereQuery(select, where)
       : select
-    console.log(' * getRow() query:', query)
     const { result } = await this.execute(query)
     if (result.rows.length) {
+      console.log('result.rows[0]', result.rows[0])
       return result.rows[0]
     }
   }

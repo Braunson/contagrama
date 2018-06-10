@@ -1,4 +1,4 @@
-import nutrients from '~/nutrients.txt'
+import nutrients from '@/nutrients.txt'
 
 const NUTRIENT_REGEX = /^(.*?)\s(?:\(((?:k|(?:mc?)|(?:\xb5)?g)|(?:IU)|(?:kcal)|(?:kJ))\))?$/
 
@@ -34,6 +34,7 @@ export const loadNutrients = () => {
       }
     }
   }
+  return parsed
 }
 
 export const parseNutrients = (arr) => {
