@@ -28,7 +28,7 @@ class Model {
       return result.rows
     }
   }
-  static async paginateRows (select, where = null, page = 1, pageSize = 10000) {
+  static async paginateRows (select, where = null, page = 1, pageSize = 500) {
     let query
     if (where !== null) {
       query = this.genWhereQuery(select, where)

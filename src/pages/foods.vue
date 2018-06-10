@@ -22,8 +22,12 @@ export default {
     const payload = {
       page: query.page || 1
     }
-    const foodsR = await app.$axios.post('food/list', payload)
-    return { foods: foodsR.data }
+    const foodsResponse = await app.$axios.post('food/list', payload)
+    console.log('foodsResponse', foodsResponse)
+    return {
+      foods: foodsResponse.data.rows,
+      totalPages: foodsResponse.data.total_pages
+    }
   }
 }
 </script>
