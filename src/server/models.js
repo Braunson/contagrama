@@ -10,7 +10,6 @@ const pool = new Pool({
 })
 
 class Model {
-  
   static async getRow (select, where = null) {
     const query = (where !== null && typeof where === 'object')
       ? this.genWhereQuery(select, where)
@@ -20,7 +19,6 @@ class Model {
       return result.rows[0]
     }
   }
-
   static async getRows (select, where = null) {
     const query = (where !== null && typeof where === 'object')
       ? this.genWhereQuery(select, where)
@@ -30,7 +28,6 @@ class Model {
       return result.rows
     }
   }
-
   static async paginateRows (select, where = null, page = 1, pageSize = 10) {
     let query
     if (where !== null && typeof where === 'object') {
@@ -42,7 +39,6 @@ class Model {
     const { result } = await this.execute(query)
     return result.rows
   }
-
   static async execute (query) {
     let client
     try {
@@ -57,7 +53,6 @@ class Model {
       client.release()
     }
   }
-
   static async updateRows (update, where, payload) {
     const values = [
       ...Object.values(payload),
@@ -77,13 +72,11 @@ class Model {
     const { result } = await this.execute(query) 
     console.log(' * Model.updateRows() result:', result)
   }
-
   static async deleteRows (deleteQ, where) {
     const query = this.genWhereQuery(deleteQ, where)
     const { result } = await this.execute(query)
     console.log(' * Model.deleteRows() result:', result)
   }
-
   static genWhereQuery (query, where) {
     where = Object.keys(where).map((key, i) => {
       return `${key} = $${i + 1}`
@@ -93,12 +86,16 @@ class Model {
       text: `${query} where ${where.join(' and ')}`
     }
   }
+}
 
+exports.FoodGroup = class extends Model {
+  static async list () {
+    return super.getRows('select * from usda_food_groups')
+  }
 }
 
 exports.Food = class extends Model {
-
-  static async list ({ page, filters, pageSize = 10 }) {
+  static async paginate ({ page, filters, pageSize = 10 }) {
     const totalRows = await super.getRow('select count(*) from usda_foods', filters)
     const paginatedRows = await super.paginateRows('select * from usda_foods', filters, page, pageSize)
     return {
@@ -106,17 +103,13 @@ exports.Food = class extends Model {
       total_pages: Math.ceil(totalRows.count / pageSize)
     }
   }
-
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods`, { id })
   }
-
   static async update ({ id, payload }) {
     return super.updateRows('update usda_foods', { id }, payload)
   }
-
   static async remove ({ id }) {
     return super.deleteRows('delete from usda_foods', { id })
   }
-
 }

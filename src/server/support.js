@@ -11,7 +11,7 @@ exports.Builder = Builder
 
 exports.config = require('../../nuxt.config.js')
 
-exports.translatePathToMethod = (path) => {
+exports.translatePath = (path) => {
   path = path.split('-')
   if (path.length === 1) {
     return path[0]

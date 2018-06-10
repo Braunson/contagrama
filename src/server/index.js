@@ -9,7 +9,7 @@ const {
   Builder,
   config,
   models,
-  translatePathToMethod
+  translatePath
 } = require('./support')
 
 const app = new Koa()
@@ -48,8 +48,9 @@ app.use(async (ctx, next) => {
   } else {
     const apiMethod = ctx.path.split('/api/')[1]
     let [model, method] = apiMethod.split('/')
-    model = model.replace(/^(.)(.*)/, (_, f, r) => `${f.toUpperCase()}${r}`)
-    method = translatePathToMethod(method)
+    model = translatePath(model)
+      .replace(/^(.)(.*)/, (_, f, r) => `${f.toUpperCase()}${r}`)
+    method = translatePath(method)
     ctx.body = await models[model][method](ctx.json)
   }
 })
