@@ -12,7 +12,7 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="1000" />
+      :total="totalPages" />
   </div>
 </template>
 
@@ -33,8 +33,10 @@ export default {
 </script>
 
 <style lang="scss">
-table {
+body {
   font-family: sans-serif;
+}
+table {
   width: 100%;
   td, th {
     padding: 5px;
@@ -49,5 +51,8 @@ table {
       background-color: #fff;
     }
   }
+}
+.el-pagination {
+  margin-top: 10px;
 }
 </style>
