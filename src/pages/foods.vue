@@ -10,6 +10,7 @@
         label="Description" />
     </el-table>
     <el-pagination
+      @current-change="paginate"
       background
       layout="prev, pager, next"
       :total="totalPages" />
@@ -27,6 +28,12 @@ export default {
     return {
       foods: foodsResponse.data.rows,
       totalPages: foodsResponse.data.total_pages
+    }
+  },
+  methods: {
+    async paginate (page) {
+      const foodsResponse = await this.$axios.post('food/list', { page })
+      this.foods = foodsResponse.data.rows
     }
   }
 }
@@ -53,6 +60,8 @@ table {
   }
 }
 .el-pagination {
+  padding-left: 0px;
+  padding-right: 0px;
   margin-top: 10px;
 }
 </style>
