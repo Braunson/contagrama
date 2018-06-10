@@ -29,6 +29,7 @@ class Model {
     }
   }
   static async paginateRows (select, where = null, page = 1, pageSize = 10000) {
+    let query
     if (where !== null) {
       query = this.genWhereQuery(select, where)
       query.text = `${query.text} limit ${pageSize} offset ${(page - 1) * pageSize}`
@@ -55,32 +56,38 @@ class Model {
       client.release()
     }
   }
-  static genWhereQuery (select, where) {
-    where = Object.keys(where).map((key, i) => {
-      return `${key} = $${index + i}`
-    })
-    return {
-      values: Object.values(where),
-      text: `${select} where ${where.join(' and ')}`
-    }
-  }
-  static updateRows (update, where, payload) {
+  static async updateRows (update, where, payload) {
     const values = [
       ...Object.values(payload),
       ...Object.values(where)
     ]
     payload = Object.keys(payload).map((key, i) => {
-      return `${key} = $${i}`
+      return `${key} = $${i + 1}`
     })
-    const index = payload.length - 1
+    const index = payload.length
     where = Object.keys(where).map((key, i) => {
-      return `${key} = $${index + i}`
+      return `${key} = $${index + (i + 1)}`
     })
     const query = {
       values,
       text: `${update} ${payload.join(', ')} where ${where.join(' and ')}`
     }
-    await this.execute(query)
+    const { result } = await this.execute(query)
+    console.log(' * Model.updateRows() result:', result)
+  }
+  static async deleteRows (deleteQ, where) {
+    const query = this.genWhereQuery(deleteQ, where)
+    const { result } = await this.execute(query)
+    console.log(' * Model.deleteRows() result:', result)
+  }
+  static genWhereQuery (query, where) {
+    where = Object.keys(where).map((key, i) => {
+      return `${key} = $${i + 1}`
+    })
+    return {
+      values: Object.values(where),
+      text: `${query} where ${where.join(' and ')}`
+    }
   }
 }
 
@@ -94,7 +101,7 @@ exports.Food = class extends Model {
   static async update ({ id, payload }) {
     return super.updateRows('update usda_foods', { id }, payload)
   }
-  static async delete ({ id }, payload) {
+  static async remove ({ id }) {
     return super.deleteRows('delete from usda_foods', { id })
   }
 }
