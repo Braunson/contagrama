@@ -5,11 +5,10 @@
     <el-table-column
       prop="id"
       label="ID"
-      width="180" />
+      width="100" />
     <el-table-column
-      prop="long_desc"
-      label="Description"
-      width="180" />
+      prop="desc_long"
+      label="Description" />
   </el-table>
 </template>
 
@@ -19,9 +18,14 @@ export default {
     const payload = {
       page: query.page || 1
     }
-    return {
-      foods: await app.$axios.post('food/list', payload)
-    }
+    const foodsR = await app.$axios.post('food/list', payload)
+    return { foods: foodsR.data }
   }
 }
 </script>
+
+<style>
+html, body, table {
+  width: 100%;
+}
+</style>

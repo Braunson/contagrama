@@ -17,7 +17,7 @@ class Model {
     }
   }
   static async getRows (query, params) {
-    const result = await this.execute(query, params)
+    const { result } = await this.execute(query, params)
     if (result && result.rows) {
       return result.rows
     }
@@ -26,14 +26,16 @@ class Model {
     if (typeof query !== 'string' || !query.length) {
       throw new Error('* Model.execute() received an empty query')
     }
-    const client = await pool.connect()
-    return {
-      client,
-      result: await client.query(`${query};`, params)
+    let client
+    try {
+      client = await pool.connect()
+      return {
+        client,
+        result: await client.query(`${query};`, params)
+      }
+    } finally {
+      client.release()
     }
-    // } finally {
-    //   client.release()
-    // }
   }
   static genUpdateQuery (where, payload) {
     let index
