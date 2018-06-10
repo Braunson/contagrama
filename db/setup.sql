@@ -8,5 +8,3 @@ create database contagrama with owner "postgres"
 create user contagrama;
 
 alter user contagrama with encrypted password :passwd;
-
-grant all privileges on database contagrama to contagrama;
