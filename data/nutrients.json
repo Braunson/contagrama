@@ -1,11 +1,16 @@
-Totals
-	Water (g) ★
-	Energy (kcal) ★
-	Energy (kJ) ★
-	Protein (g) ★
-	Lipids (fat) (g) ★
-	Carbohydrates (g) ★
-	Ash (g)
+[
+  {
+	"title": "Totals",
+	"nutrients": [
+      "Water (g)",
+	  "Energy (kcal)",
+	  "Energy (kJ)",
+	  "Protein (g)",
+	  "Lipids (fat) (g)",
+	  "Carbohydrates (g)",
+	  "Ash (g)"
+    ]
+  },
 Carbohydrates
 	Fiber, total dietary (g) ★
 	Sugars, total (g) ★
