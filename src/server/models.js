@@ -92,7 +92,7 @@ class Model {
         return arr.concat(Object.keys(where[key]).map((subkey) => {
           values.push(where[key][subkey])
           return `${subkey} like ${index++}`
-        })
+        }))
       } else {
         values.push(where[key])
         arr.push(`${key} = $${index++}`)
