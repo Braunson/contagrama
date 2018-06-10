@@ -88,13 +88,13 @@ class Model {
   }
 }
 
-exports.FoodGroup = class extends Model {
+exports.FoodGroups = class extends Model {
   static async list () {
     return super.getRows('select * from usda_food_groups')
   }
 }
 
-exports.Food = class extends Model {
+exports.Foods = class extends Model {
   static async paginate ({ page, filters, pageSize = 10 }) {
     const totalRows = await super.getRow('select count(*) from usda_foods', filters)
     const paginatedRows = await super.paginateRows('select * from usda_foods', filters, page, pageSize)
