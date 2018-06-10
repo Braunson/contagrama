@@ -11,7 +11,7 @@ const pool = new Pool({
 
 class Model {
   static async getRow (select, where = null) {
-    const query = (where !== null && typeof where === 'object')
+    const query = this.checkParamObject(where)
       ? this.genWhereQuery(select, where)
       : select
     const { result } = await this.execute(query)
@@ -20,7 +20,7 @@ class Model {
     }
   }
   static async getRows (select, where = null) {
-    const query = (where !== null && typeof where === 'object')
+    const query = this.checkParamObject(where)
       ? this.genWhereQuery(select, where)
       : select
     const { result } = await this.execute(query)
@@ -30,7 +30,7 @@ class Model {
   }
   static async paginateRows (select, where = null, page = 1, pageSize = 10) {
     let query
-    if (where !== null && typeof where === 'object') {
+    if (this.checkParamObject(where)) {
       query = this.genWhereQuery(select, where)
       query.text = `${query.text} limit ${pageSize} offset ${(page - 1) * pageSize}`
     } else {
@@ -76,6 +76,13 @@ class Model {
     const query = this.genWhereQuery(deleteQ, where)
     const { result } = await this.execute(query)
     console.log(' * Model.deleteRows() result:', result)
+  }
+  static checkParamObject (obj) {
+    return (
+      obj !== null &&
+      typeof obj === 'object' &&
+      Object.keys(obj).length > 0
+    )
   }
   static genWhereQuery (query, where) {
     where = Object.keys(where).map((key, i) => {

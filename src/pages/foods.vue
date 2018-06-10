@@ -56,7 +56,16 @@ export default {
   },
   methods: {
     async paginate (page) {
-      const foodsResponse = await this.$axios.post('food/list', { page })
+      let filters = {}
+      if (this.foodGroup) {
+        filters.id_food_group = this.foodGroup
+      }
+      if (this.searchField) {
+        filters.$like = {
+          'desc_long': `%${this.searchField}%`
+        }
+      }
+      const foodsResponse = await this.$axios.post('food/list', { filters, page })
       this.foods = foodsResponse.data.rows
     }
   }
