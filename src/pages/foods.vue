@@ -1,15 +1,19 @@
 <template>
-  <el-table
-    :data="foods"
-    style="width: 100%">
-    <el-table-column
-      prop="id"
-      label="ID"
-      width="100" />
-    <el-table-column
-      prop="desc_long"
-      label="Description" />
-  </el-table>
+  <div>
+    <el-table :data="foods">
+      <el-table-column
+        prop="id"
+        label="ID"
+        width="100" />
+      <el-table-column
+        prop="desc_long"
+        label="Description" />
+    </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="1000" />
+  </div>
 </template>
 
 <script>
@@ -24,8 +28,22 @@ export default {
 }
 </script>
 
-<style>
-html, body, table {
+<style lang="scss">
+table {
+  font-family: sans-serif;
   width: 100%;
+  td, th {
+    padding: 5px;
+  }
+  thead tr {
+    text-align: left;
+  }
+  tbody tr {
+    text-align: left;
+    background-color: #f2f2f2;
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+  }
 }
 </style>

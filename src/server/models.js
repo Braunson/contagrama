@@ -10,19 +10,30 @@ const pool = new Pool({
 })
 
 class Model {
-  static async getRow (query, params) {
-    const result = await this.execute(query, params)
+  static async getRow (select, where = null) {
+    if (where != null) {
+      query = this.genWhereQuery(select, where)
+    }
+    const result = await this.execute(query)
     if (result && result.rows.length) {
       return result.rows[0]
     }
   }
-  static async getRows (query, params) {
-    const { result } = await this.execute(query, params)
+  static async getRows (select, where = null) {
+    const query = (where !== null)
+      ? this.genWhereQuery(select, where)
+      : select
+    const { result } = await this.execute(query)
     if (result && result.rows) {
       return result.rows
     }
   }
-  static async execute (query, params = []) {
+  static async paginateRows (query, where = null, page = 1) {
+    if (where) {
+      query = 
+    }
+  }
+  static async execute (query, ...params) {
     if (typeof query !== 'string' || !query.length) {
       throw new Error('* Model.execute() received an empty query')
     }
@@ -37,30 +48,46 @@ class Model {
       client.release()
     }
   }
-  static genUpdateQuery (where, payload) {
-    let index
-    const params = Object.values(payload)
-      .concat(Object.values(where))
-    payload = Object.keys(payload).map((key, i) => {
-      index = i
-      return `${key} = $${i}`
-    })
+  static genWhereQuery (select, where) {
     where = Object.keys(where).map((key, i) => {
       return `${key} = $${index + i}`
     })
     return {
-      params,
-      query: `${payload.join(', ')} where ${where.join(' and ')}`
+      params: Object.values(where),
+      query: `${select} where ${where.join(' and ')}`
+    }
+  }
+  static genUpdateQuery (where, payload) {
+    const values = [
+      ...Object.values(payload),
+      ...Object.values(where)
+    ]
+    payload = Object.keys(payload).map((key, i) => {
+      return `${key} = $${i}`
+    })
+    const index = payload.length - 1
+    where = Object.keys(where).map((key, i) => {
+      return `${key} = $${index + i}`
+    })
+    return {
+      values,
+      text: `${payload.join(', ')} where ${where.join(' and ')}`
     }
   }
 }
 
 exports.Food = class extends Model {
   static async list ({ page }) {
+
     if (isNaN(page)) {
       page = 1
     }
-    return super.getRows(`select * from usda_foods limit 1000 offset ${(page - 1) * 1000}`)
+    const rows = await super.getRows(`select * from usda_foods )
+    return {
+      rows,
+      total: rows.length / 1000
+
+    }
   }
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods where id = $1`, id)
@@ -70,6 +97,6 @@ exports.Food = class extends Model {
     return super.execute(`update usda_foods ${updateQuery}`)
   }
   static async delete ({ id }, payload) {
-    return super.execute('delete from usda_foods where id = $1', [id])
+    return super.execute('delete from usda_foods where id = $1', id)
   }
 }

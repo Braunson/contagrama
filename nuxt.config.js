@@ -20,6 +20,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'contagrama: Minimalist Plain Text Dieting' }
     ]
   },
+  css: [
+    'element-theme-default/lib/index.css'
+  ],
   plugins: [
     { src: '~/plugins/elementui', ssr: true }
   ],
