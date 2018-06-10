@@ -1,5 +1,5 @@
 
-require('dotenv').config()
+require('dotenv').config({path: 'contagrama.env'})
 
 const {
   Koa,
