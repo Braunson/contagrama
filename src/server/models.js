@@ -11,11 +11,11 @@ const pool = new Pool({
 
 class Model {
   static async getRow (select, where = null) {
-    if (where != null) {
-      query = this.genWhereQuery(select, where)
-    }
+    const query = (where != null)
+      ? this.genWhereQuery(select, where)
+      : select
     const result = await this.execute(query)
-    if (result && result.rows.length) {
+    if (result.rows.length) {
       return result.rows[0]
     }
   }
@@ -41,14 +41,16 @@ class Model {
       total_pages: Math.ceil(result.rows.length / pageSize)
     }
   }
-  static async execute (query, ...params) {
+  static async execute (query) {
     let client
     try {
       client = await pool.connect()
       return {
         client,
-        result: await client.query(`${query};`, params)
+        result: await client.query(query)
       }
+    } catch (err) {
+      console.log(' * Model.execute() failed:', err)
     } finally {
       client.release()
     }
@@ -62,7 +64,7 @@ class Model {
       text: `${select} where ${where.join(' and ')}`
     }
   }
-  static genUpdateQuery (where, payload) {
+  static updateRows (update, where, payload) {
     const values = [
       ...Object.values(payload),
       ...Object.values(where)
@@ -74,25 +76,25 @@ class Model {
     where = Object.keys(where).map((key, i) => {
       return `${key} = $${index + i}`
     })
-    return {
+    const query = {
       values,
-      text: `${payload.join(', ')} where ${where.join(' and ')}`
+      text: `${update} ${payload.join(', ')} where ${where.join(' and ')}`
     }
+    await this.execute(query)
   }
 }
 
 exports.Food = class extends Model {
-  static async list ({ page }) {
-    return super.paginateRows('select * from usda_foods', null, page)
+  static async list ({ page, filters }) {
+    return super.paginateRows('select * from usda_foods', filters, page)
   }
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods`, { id })
   }
   static async update ({ id, payload }) {
-    const updateQuery = super.genUpdateQuery({ id }, payload)
-    return super.execute(`update usda_foods ${updateQuery}`)
+    return super.updateRows('update usda_foods', { id }, payload)
   }
   static async delete ({ id }, payload) {
-    return super.execute('delete from usda_foods where id = $1', id)
+    return super.deleteRows('delete from usda_foods', { id })
   }
 }
