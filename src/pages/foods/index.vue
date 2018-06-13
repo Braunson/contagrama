@@ -26,7 +26,8 @@
           width="100" />
         <el-table-column
           prop="cg_terms"
-          label="Contagrama">
+          label="Contagrama"
+          width="350">
           <template slot-scope="scope">
             <el-input v-model="cgTermsHash[scope.row.id]" />
           </template>
