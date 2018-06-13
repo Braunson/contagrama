@@ -13,6 +13,8 @@ CREATE TABLE usda_food_nutrition (
 CREATE TABLE usda_foods (
   id character varying(5) NOT NULL,
   id_food_group character varying(4) NOT NULL,
+  cg_terms character varying(200),
+  cg_listed boolean,
   desc_long character varying(200) NOT NULL,
   desc_short character varying(60) NOT NULL,
   common_names character varying(100),

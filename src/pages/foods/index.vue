@@ -25,6 +25,13 @@
           label="ID"
           width="100" />
         <el-table-column
+          prop="cg_terms"
+          label="Contagrama">
+          <template slot-scope="scope">
+            <el-input v-model="cgTermsHash[scope.row.id]" />
+          </template>
+        </el-table-column>
+        <el-table-column
           prop="desc_long"
           label="Description">
           <template slot-scope="scope">
@@ -47,6 +54,7 @@ export default {
   data: () => ({
     page: 1,
     foodGroup: null,
+    cgTermsHash: {},
     searchField: ''
   }),
   async asyncData ({ app, query, params }) {
