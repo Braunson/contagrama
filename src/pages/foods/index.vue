@@ -17,6 +17,9 @@
             :value="fg.id" />
         </el-select>
       </el-col>
+      <el-col :span="2" v-show="changesMade">
+        <el-button :loading="updating" type="success" @click="update">Save</el-button>
+      </el-col>
     </el-row>
     <el-row>
       <el-table :data="foods">
@@ -29,7 +32,7 @@
           label="Contagrama"
           width="350">
           <template slot-scope="scope">
-            <el-input v-model="cgTermsHash[scope.row.id]" />
+            <el-input v-model="termsHash[scope.row.id]" />
           </template>
         </el-table-column>
         <el-table-column
@@ -51,11 +54,18 @@
 </template>
 
 <script>
+const genTermsHash = (foods) => {
+  return foods.reduce((obj, food) => {
+    return { ...obj, [food.id]: (food.cg_terms || '') }
+  }, {})
+}
 export default {
   data: () => ({
     page: 1,
+    updating: false,
     foodGroup: null,
-    cgTermsHash: {},
+    termsHash: {},
+    termsHashOrig: {},
     searchField: ''
   }),
   async asyncData ({ app, query, params }) {
@@ -73,6 +83,8 @@ export default {
     const foodGroupsResponse = await app.$axios.post('food-groups/list')
     return {
       foods: foodsResponse.data.rows,
+      termsHashOrig: genTermsHash(foodsResponse.data.rows),
+      termsHash: genTermsHash(foodsResponse.data.rows),
       foodGroups: foodGroupsResponse.data,
       totalPages: foodsResponse.data.total_pages
     }
@@ -80,6 +92,17 @@ export default {
   watch: {
     foodGroup () {
       this.paginate(1)
+    }
+  },
+  computed: {
+    changesMade () {
+      const ids = Object.keys(this.termsHash)
+      for (let i = 0, len = ids.length; i < len; i++) {
+        if (this.termsHash[ids[i]] !== this.termsHashOrig[ids[i]]) {
+          return true
+        }
+      }
+      return false
     }
   },
   methods: {
@@ -104,6 +127,19 @@ export default {
       const newPath = `${origin}${pathname}?${this.encodeParams(qs)}`
       window.history.replaceState({ path: newPath }, '', newPath)
     },
+    async update () {
+      this.updating = true
+      const ids = Object.keys(this.termsHash).reduce((obj, id) => {
+        if (this.termsHash[id] !== this.termsHashOrig[id]) {
+          // console.log('this.termsHash[id]', this.termsHash[id])
+          return { ...obj, [id]: { 'cg_terms': this.termsHash[id] } }
+        } else {
+          return obj
+        }
+      }, {})
+      await this.$axios.post('/foods/update', { ids })
+      this.updating = false
+    },
     async paginate (page) {
       let filters = {}
       let qs = {}
@@ -119,6 +155,7 @@ export default {
       }
       const foodsResponse = await this.$axios.post('foods/paginate', { filters, page })
       this.foods = foodsResponse.data.rows
+      this.termsHashOrig = genTermsHash(this.foods)
       this.totalPages = foodsResponse.data.total_pages
       this.page = page
       this.updatePath()
