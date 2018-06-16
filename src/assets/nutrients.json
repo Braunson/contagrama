@@ -29,17 +29,17 @@
     {
       "title": "Lipids",
       "nutrients": [
-        "Fatty acids, total saturated (g)",
-        "Fatty acids, total monounsaturated (g)",
-        "Fatty acids, total polyunsaturated (g)",
-        "Fatty acids, total trans (g)",
-        "Fatty acids, total trans-monoenoic (g)",
-        "Fatty acids, total trans-polyenoic (g)",
-        "Cholesterol (mg)",
-        "Phytosterols (mg)",
-        "Stigmasterol (mg)",
-        "Campesterol (mg)",
-        "Beta-sitosterol (mg)"
+        [606, "Fatty acids, total saturated (g)"],
+        [645, "Fatty acids, total monounsaturated (g)"],
+        [646, "Fatty acids, total polyunsaturated (g)"],
+        [605, "Fatty acids, total trans (g)"],
+        [693, "Fatty acids, total trans-monoenoic (g)"],
+        [695, "Fatty acids, total trans-polyenoic (g)"],
+        [601, "Cholesterol (mg)"],
+        [636, "Phytosterols (mg)"],
+        [638, "Stigmasterol (mg)"],
+        [639, "Campesterol (mg)"],
+        [641, "Beta-sitosterol (mg)"]
       ]
     },
     {
