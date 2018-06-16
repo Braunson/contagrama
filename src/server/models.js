@@ -60,7 +60,7 @@ class Foods extends Model {
     const ids = await Promise.all(foods.map((food) => {
       return super.getRow('select id from usda_foods', {
         $ilike: {'cg_terms': food[1]}
-      }).then((row) => [row.id, food[0]])
+      }).then((row) => [row.id, parseInt(food[0])])
     }))
     const nSets = await Promise.all(ids.map((foodData) => {
       return this.getNutrients({ id: foodData[0], factor: 100 })
