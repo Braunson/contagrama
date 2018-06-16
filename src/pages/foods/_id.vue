@@ -7,8 +7,8 @@
           <div class="title">{{ group.title }}
             <table>
               <tr v-for="item in group.nutrients">
-                <td>{{ item }}</td>
-                <td>xxx</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ nutrients[item[0]] }}</td>
               </tr>
             </table>
           </div>
@@ -31,11 +31,19 @@
 </template>
 
 <script>
-import nutrients from '@/assets/nutrients.json'
+import chart from '@/assets/nutrients.json'
 export default {
+  data: () => ({
+    nutrients: {}
+  }),
   async asyncData ({ app, params }) {
     const foodResponse = await app.$axios.post('foods/get', { id: params.id })
-    return { food: foodResponse.data, chart: nutrients }
+    const nutrientsResponse = await app.$axios.post('foods/get-nutrients', { id: params.id })
+    return {
+      chart,
+      food: foodResponse.data,
+      nutrients: nutrientsResponse.data
+    }
   }
 }
 </script>
