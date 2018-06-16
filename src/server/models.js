@@ -60,19 +60,20 @@ class Foods extends Model {
     const ids = await Promise.all(foods.map((food) => {
       return super.getRow('select id from usda_foods', {
         $ilike: {'cg_terms': food[1]}
-      }).then((row) => row.id)
+      }).then((row) => [row.id, food[0]])
     }))
-    const nSets = await Promise.all(ids.map((id) => {
-      return this.getNutrients({ id, factor: 100 })
+    const nSets = await Promise.all(ids.map((foodData) => {
+      return this.getNutrients({ id: foodData[0], factor: 100 })
+        .then((results) => ({ results, amount: foodData[1] }))
     }))
     return nSets.reduce((sums, nset) => {
       return { 
         ...sums,
-        ...Object.keys(nset).reduce((obj, id) => {
+        ...Object.keys(nset.results).reduce((obj, id) => {
           if (id in sums) {
-            return { ...obj, [id]: nset[id] + sums[id] }
+            return { ...obj, [id]: (nset[id] + sums[id]) * nset.amount  }
           } else {
-            return { ...obj, [id]: nset[id] }
+            return { ...obj, [id]: nset[id] * nset.amount }
           }
         }, {})
       }
