@@ -45,17 +45,17 @@
     {
       "title": "Minerals",
       "nutrients": [
-        "Calcium, Ca (mg) ★",
-        "Iron, Fe (mg) ★",
-        "Magnesium, Mg (mg) ★",
-        "Phosphorus, P (mg) ★",
-        "Potassium, K (mg) ★",
-        "Sodium, Na (mg) ★",
-        "Zinc, Zn (mg) ★",
-        "Copper, Cu (mg) ★",
-        "Manganese, Mn (mg) ★",
-        "Selenium, Se (µg) ★",
-        "Fluoride, F (µg) ★"
+        [301, "Calcium, Ca (mg)"],
+        [303, "Iron, Fe (mg)"],
+        [304, "Magnesium, Mg (mg)"],
+        [305, "Phosphorus, P (mg)"],
+        [306, "Potassium, K (mg)"],
+        [307, "Sodium, Na (mg)"],
+        [309, "Zinc, Zn (mg)"],
+        [312, "Copper, Cu (mg)"],
+        [315, "Manganese, Mn (mg)"],
+        [317, "Selenium, Se (µg)"],
+        [313, "Fluoride, F (µg)"]
       ]
     },
     {
