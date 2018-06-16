@@ -8,7 +8,7 @@
             <table>
               <tr v-for="item in group.nutrients" v-if="nutrients[item[0]]">
                 <td>{{ item[1] }}</td>
-                <td class="amount">{{ nutrients[item[0]] }}</td>
+                <td class="amount">{{ nutrients[item[0]].toFixed(2) }}</td>
               </tr>
             </table>
           </div>
@@ -20,7 +20,7 @@
             <table>
               <tr v-for="item in group.nutrients" v-if="nutrients[item[0]]">
                 <td>{{ item[1] }}</td>
-                <td class="amount">{{ nutrients[item[0]] }}</td>
+                <td class="amount">{{ nutrients[item[0]].toFixed(2) }}</td>
               </tr>
             </table>
           </div>
@@ -50,11 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-html, body {
-  margin: 10px;
-  padding: 0px;
-  font-family: sans-serif;
-}
 .charts {
   width: 100%;
   display: flex;

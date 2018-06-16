@@ -44,7 +44,7 @@ exports.FoodGroups = class extends Model {
   }
 }
 
-exports.Foods = class extends Model {
+class Foods extends Model {
   static async paginate ({ page, filters, pageSize = 10 }) {
     const totalRows = await super.getRow('select count(*) from usda_foods', filters)
     const paginatedRows = await super.paginateRows('select * from usda_foods', filters, page, pageSize)
@@ -56,7 +56,32 @@ exports.Foods = class extends Model {
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods`, { id })
   }
-  static async getNutrients ({ id }) {
+  static async sumNutrients ({ foods }) {
+    const ids = await Promise.all(foods.map((food) => {
+      return super.getRow('select id from usda_foods', {
+        $ilike: {'cg_terms': food[1]}
+      }).then((row) => row.id)
+    }))
+    const nSets = await Promise.all(ids.map((id) => {
+      return this.getNutrients({ id, factor: 100 })
+    }))
+    return nSets.reduce((sums, nset) => {
+      return { 
+        ...sums,
+        ...Object.keys(nset).reduce((obj, id) => {
+          if (id in sums) {
+            return { ...obj, [id]: nset[id] + sums[id] }
+          } else {
+            return { ...obj, [id]: nset[id] }
+          }
+        }, {})
+      }
+    }, {})
+  }
+  static async getNutrients ({ id, factor }) {
+    if (!factor) {
+      factor = 1
+    }
     const { result } = await super.execute({
       text: `
         select n.id, fn.amount from usda_nutrients n, usda_food_nutrition fn
@@ -65,8 +90,8 @@ exports.Foods = class extends Model {
       values: [id]
     })
     return result.rows.reduce((obj, fn) => {
-      return { ...obj, [fn.id]: parseFloat(fn.amount).toFixed(2) }
-    })
+      return { ...obj, [fn.id]: parseFloat(fn.amount / factor) }
+    }, {})
   }
   static async update ({ ids }) {
     await super.updateRows2('update usda_foods', ids)
@@ -79,3 +104,5 @@ exports.Foods = class extends Model {
     return super.deleteRows('delete from usda_foods', { id })
   }
 }
+
+exports.Foods = Foods
