@@ -15,7 +15,6 @@ Model.client = new Pool({
 Model.updateRows2 = function (update, ids = {}) {
   const keys = Object.keys(ids)
   if (keys.length) {
-    console.log('keys', keys)
     return Promise.all(keys.map((id) => {
       return this.updateRows(update, { id }, ids[id])
     }))
@@ -56,6 +55,18 @@ exports.Foods = class extends Model {
   }
   static async get ({ id }) {
     return super.getRow(`select * from usda_foods`, { id })
+  }
+  static async getNutrients ({ id }) {
+    const { result } = await super.execute({
+      text: `
+        select n.id, fn.amount from usda_nutrients n, usda_food_nutrition fn
+        where fn.id_food = $1 and fn.id_nutrient = n.id
+      `,
+      values: [id]
+    })
+    return result.rows.reduce((obj, fn) => {
+      return { ...obj, [fn.id]: parseFloat(fn.amount).toFixed(2) }
+    })
   }
   static async update ({ ids }) {
     await super.updateRows2('update usda_foods', ids)

@@ -6,9 +6,9 @@
         <div class="group" v-for="group in chart[0]">
           <div class="title">{{ group.title }}
             <table>
-              <tr v-for="item in group.nutrients">
+              <tr v-for="item in group.nutrients" v-if="nutrients[item[0]]">
                 <td>{{ item[1] }}</td>
-                <td>{{ nutrients[item[0]] }}</td>
+                <td class="amount">{{ nutrients[item[0]] }}</td>
               </tr>
             </table>
           </div>
@@ -18,9 +18,9 @@
         <div class="group" v-for="group in chart[1]">
           <div class="title">{{ group.title }}
             <table>
-              <tr v-for="item in group.nutrients">
-                <td>{{ item }}</td>
-                <td>xxx</td>
+              <tr v-for="item in group.nutrients" v-if="nutrients[item[0]]">
+                <td>{{ item[1] }}</td>
+                <td class="amount">{{ nutrients[item[0]] }}</td>
               </tr>
             </table>
           </div>
@@ -39,6 +39,7 @@ export default {
   async asyncData ({ app, params }) {
     const foodResponse = await app.$axios.post('foods/get', { id: params.id })
     const nutrientsResponse = await app.$axios.post('foods/get-nutrients', { id: params.id })
+    console.log('nutrientsResponse', nutrientsResponse.data)
     return {
       chart,
       food: foodResponse.data,
@@ -62,6 +63,12 @@ html, body {
 .chart {
   background: #fff;
   width: 49%;
+  .amount {
+    color: #bf6c65;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: -1.1px;
+  }
   .group {
     padding: 10px 5px;
     padding-bottom: 1px;
