@@ -21,8 +21,8 @@
             <tbody>
               <tr v-for="item in group.nutrients">
                 <td>{{ item[1] }}</td>
-                <td class="amount" v-show="nutrients[item[0]]">
-                  {{ nutrients[item[0]] ? nutrients[item[0].toString()].toFixed(2) : '' }}
+                <td class="amount">
+                  {{ nutrients[item[0]] ? nutrients[item[0].toString()].toFixed(2) : '—' }}
                 </td>
               </tr>
             </tbody>
@@ -101,9 +101,10 @@ b.mono {
   padding: 2px;
 }
 .chart {
+  margin-top: 40px;
   box-sizing: border-box;
   background: #fff;
-  width: 49%;
+  width: 29%;
   height: 100%;
   .amount {
     color: #bf6c65;
