@@ -3,13 +3,13 @@
     {
       "title": "Totals",
       "nutrients": [
-        "Water (g)",
-        "Energy (kcal)",
-        "Energy (kJ)",
-        "Protein (g)",
-        "Lipids (fat) (g)",
-        "Carbohydrates (g)",
-        "Ash (g)"
+        [255, "Water (g)"],
+        [208, "Energy (kcal)"],
+        [268, "Energy (kJ)"],
+        [203, "Protein (g)"],
+        [204, "Lipids (fat) (g)"],
+        [205, "Carbohydrates (g)"],
+        [207, "Ash (g)"]
       ]
     },
     {
