@@ -61,44 +61,44 @@
     {
       "title": "Vitamins",
       "nutrients": [
-        "Vitamin C, total ascorbic acid (mg)",
-        "Thiamin (mg)",
-        "Riboflavin (mg)",
-        "Niacin (mg)",
-        "Pantothenic acid (mg)",
-        "Vitamin B-6 (mg)",
-        "Folate, total (µg)",
-        "Folic acid (µg)",
-        "Folate, food (µg)",
-        "Folate, DFE (µg)",
-        "Choline, total (mg)",
-        "Betaine (mg)",
-        "Vitamin B-12 (µg)",
-        "Vitamin B-12, added (µg)",
-        "Vitamin A, RAE (µg)",
-        "Retinol (µg)",
-        "Carotene, beta (µg)",
-        "Carotene, alpha (µg)",
-        "Cryptoxanthin, beta (µg)",
-        "Vitamin A, IU (IU)",
-        "Lycopene (µg)",
-        "Lutein + zeaxanthin (µg)",
-        "Vitamin E (alpha-tocopherol) (mg)",
-        "Vitamin E, added (mg)",
-        "Tocopherol, beta (mg)",
-        "Tocopherol, gamma (mg)",
-        "Tocopherol, delta (mg)",
-        "Tocotrienol, alpha (mg)",
-        "Tocotrienol, beta (mg)",
-        "Tocotrienol, gamma (mg)",
-        "Tocotrienol, delta (mg)",
-        "Vitamin D (D2 + D3) (µg)",
-        "Vitamin D2 (ergocalciferol) (µg)",
-        "Vitamin D3 (cholecalciferol) (µg)",
-        "Vitamin D (IU)",
-        "Vitamin K (phylloquinone) (µg)",
-        "Dihydrophylloquinone (µg)",
-        "Menaquinone-4 (µg)"
+        [401, "Vitamin C, total ascorbic acid (mg)"],
+        [404, "Thiamin (mg)"],
+        [405, "Riboflavin (mg)"],
+        [406, "Niacin (mg)"],
+        [410, "Pantothenic acid (mg)"],
+        [415, "Vitamin B-6 (mg)"],
+        [417, "Folate, total (µg)"],
+        [431, "Folic acid (µg)"],
+        [432, "Folate, food (µg)"],
+        [435, "Folate, DFE (µg)"],
+        [421, "Choline, total (mg)"],
+        [454, "Betaine (mg)"],
+        [418, "Vitamin B-12 (µg)"],
+        [578, "Vitamin B-12, added (µg)"],
+        [320, "Vitamin A, RAE (µg)"],
+        [319, "Retinol (µg)"],
+        [321, "Carotene, beta (µg)"],
+        [322, "Carotene, alpha (µg)"],
+        [334, "Cryptoxanthin, beta (µg)"],
+        [318, "Vitamin A, IU (IU)"],
+        [337, "Lycopene (µg)"],
+        [338, "Lutein + zeaxanthin (µg)"],
+        [323, "Vitamin E (alpha-tocopherol) (mg)"],
+        [573, "Vitamin E, added (mg)"],
+        [341, "Tocopherol, beta (mg)"],
+        [342, "Tocopherol, gamma (mg)"],
+        [343, "Tocopherol, delta (mg)"],
+        [344, "Tocotrienol, alpha (mg)"],
+        [345, "Tocotrienol, beta (mg)"],
+        [346, "Tocotrienol, gamma (mg)"],
+        [347, "Tocotrienol, delta (mg)"],
+        [328, "Vitamin D (D2 + D3) (µg)"],
+        [325, "Vitamin D2 (ergocalciferol) (µg)"],
+        [326, "Vitamin D3 (cholecalciferol) (µg)"],
+        [324, "Vitamin D (IU)"],
+        [430, "Vitamin K (phylloquinone) (µg)"],
+        [429, "Dihydrophylloquinone (µg)"],
+        [424, "Menaquinone-4 (µg)"]
       ]
     }
   ],
@@ -106,81 +106,33 @@
     {
       "title": "Amino acids",
       "nutrients": [
-        "Tryptophan (g)",
-        "Threonine (g)",
-        "Isoleucine (g)",
-        "Leucine (g)",
-        "Lysine (g)",
-        "Methionine (g)",
-        "Cystine (g)",
-        "Phenylalanine (g)",
-        "Tyrosine (g)",
-        "Valine (g)",
-        "Arginine (g)",
-        "Histidine (g)",
-        "Alanine (g)",
-        "Aspartic acid (g)",
-        "Glutamic acid (g)",
-        "Glycine (g)",
-        "Proline (g)",
-        "Serine (g)",
-        "Hydroxyproline (g)"
-      ]
-    },
-    {
-      "title": "Flavan-3-ols (mg)",
-      "nutrients": [
-        "(+)-Catechin (mg)",
-        "(-)-Epigallocatechin (mg)",
-        "(-)-Epicatechin (mg)",
-        "(-)-Epicatechin 3-gallate (mg)",
-        "(-)-Epigallocatechin 3-gallate (mg)",
-        "(+)-Gallocatechin (mg)"
-      ]
-    },
-    {
-      "title": "Flavones (mg)",
-      "nutrients": [
-        "Apigenin (mg)",
-        "Luteolin (mg)"
-      ]
-    },
-    {
-      "title": "Flavonols (mg)",
-      "nutrients": [
-        "Isorhamnetin (mg)",
-        "Kaempferol (mg)",
-        "Myricetin (mg)",
-        "Quercetin (mg)"
-      ]
-    },
-    {
-      "title": "Isoflavones (mg)",
-      "nutrients": [
-        "Daidzein (mg)",
-        "Genistein (mg)",
-        "Glycitein (mg)",
-        "Biochanin A (mg) (mg)",
-        "Formononetin (mg) (mg)",
-        "Coumestrol (mg)"
-      ]
-    },
-    {
-      "title": "Proanthocyanidin (mg)",
-      "nutrients": [
-        "Proanthocyanidin dimers (mg)",
-        "Proanthocyanidin trimers (mg)",
-        "Proanthocyanidin 4-6mers (mg)",
-        "Proanthocyanidin 7-10mers (mg)",
-        "Proanthocyanidin polymers (>10mers) (mg)"
+        [501, "Tryptophan (g)"],
+        [502, "Threonine (g)"],
+        [503, "Isoleucine (g)"],
+        [504, "Leucine (g)"],
+        [505, "Lysine (g)"],
+        [506, "Methionine (g)"],
+        [507, "Cystine (g)"],
+        [508, "Phenylalanine (g)"],
+        [509, "Tyrosine (g)"],
+        [510, "Valine (g)"],
+        [511, "Arginine (g)"],
+        [512, "Histidine (g)"],
+        [513, "Alanine (g)"],
+        [514, "Aspartic acid (g)"],
+        [515, "Glutamic acid (g)"],
+        [516, "Glycine (g)"],
+        [517, "Proline (g)"],
+        [518, "Serine (g)"],
+        [521, "Hydroxyproline (g)"]
       ]
     },
     {
       "title": "Others",
       "nutrients": [
-        "Alcohol, ethyl (g)",
-        "Caffeine (mg)",
-        "Theobromine (mg)"
+        [221, "Alcohol, ethyl (g)"],
+        [262, "Caffeine (mg)"],
+        [263, "Theobromine (mg)"]
       ]
     }
   ]
