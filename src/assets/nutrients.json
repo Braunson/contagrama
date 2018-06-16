@@ -15,15 +15,15 @@
     {
       "title": "Carbohydrates",
       "nutrients": [
-        "Fiber, total dietary (g)",
-        "Sugars, total (g)",
-        "Sucrose (g)",
-        "Glucose (dextrose) (g)",
-        "Fructose (g)",
-        "Lactose (g)",
-        "Maltose (g)",
-        "Galactose (g)",
-        "Starch (g)"
+        [291, "Fiber, total dietary (g)"],
+        [269, "Sugars, total (g)"],
+        [210, "Sucrose (g)"],
+        [211, "Glucose (dextrose) (g)"],
+        [212, "Fructose (g)"],
+        [213, "Lactose (g)"],
+        [214, "Maltose (g)"],
+        [287, "Galactose (g)"],
+        [209, "Starch (g)]"]
       ]
     },
     {
