@@ -73,11 +73,11 @@ export default {
       filters: {},
       page: query.p || 1
     }
-    if (params.fg) {
-      payload.filters['id_food_group'] = params.fg
+    if (query.fg) {
+      payload.filters['id_food_group'] = query.fg
     }
-    if (params.q) {
-      payload.filters.$ilike = { 'desc_long': `%${this.searchField}%` }
+    if (query.q) {
+      payload.filters.$ilike = { 'desc_long': `%${query.q}%` }
     }
     const foodsResponse = await app.$axios.post('foods/paginate', payload)
     const foodGroupsResponse = await app.$axios.post('food-groups/list')
