@@ -156,7 +156,7 @@ export default {
       const foodsResponse = await this.$axios.post('foods/paginate', { filters, page })
       this.foods = foodsResponse.data.rows
       this.termsHashOrig = genTermsHash(this.foods)
-      this.termsHash = genTermsHash(foodsResponse.data.rows)
+      this.termsHash = genTermsHash(this.foods)
       this.totalPages = foodsResponse.data.total_pages
       this.page = page
       this.updatePath()
